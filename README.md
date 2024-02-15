@@ -1,4 +1,4 @@
-# ECM2434
+# ECM2434/B0001
 ## Gamification of Sustainability
 
 Welcome to the repo for Group 404: Group not found's ECM 2434 coursework on the Gameification of Sustainability.
