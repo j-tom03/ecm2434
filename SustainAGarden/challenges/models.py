@@ -4,11 +4,12 @@ from django.db import models
 
 
 class User(models.Model):
-    username = models.CharField(max_length=200, unique=True)
+    username = models.CharField(max_length=200, primary_key=True)
     email = models.EmailField(max_length=200)
     password = models.CharField(max_length=200)
     coins = models.IntegerField(default=0)
     completed_challenges = models.IntegerField(default=0)
+    setter = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
