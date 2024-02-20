@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='challenge',
+            name='Challenge',
             fields=[
                 ('challenge_ID', models.AutoField(primary_key=True, serialize=False)),
                 ('title', models.CharField(max_length=200)),

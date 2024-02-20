@@ -16,7 +16,7 @@ class User(models.Model):
         return self.username
 
 
-class challenge(models.Model):
+class Challenge(models.Model):
     challenge_ID = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
     description = models.TextField()
@@ -25,4 +25,13 @@ class challenge(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class completeChallenge(models.Model):
+    challenge_ID = models.ForeignKey(Challenge, on_delete=models.CASCADE)
+    date = models.DateField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.challenge_ID.title + " " + self.user.username
 
