@@ -11,7 +11,9 @@ function populate_t(tile_string) {
     const plot = document.getElementById('plot-container');
     const tiles = plot.childNodes;
     for (let i = 0; i < tile_string.length; i++) {
-        tiles[i].textContent = tile_string[i];
+        if (tile_string[i] != '0') {
+            tiles[i].textContent = tile_string[i];
+        }
     }
 }
 
