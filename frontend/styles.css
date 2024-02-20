@@ -1,0 +1,18 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+#title {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 300px;
+}
+
+#points {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100px;
+}
