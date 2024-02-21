@@ -20,22 +20,36 @@ function populate_t(tile_string) {
 document.addEventListener("DOMContentLoaded", function () {
     document
         .getElementById("profileButton")
-        .addEventListener("click", function () {
-            var profileInfoDiv = document.getElementById("profileInfo");
-            if (profileInfoDiv.style.display === "none") {
-                profileInfoDiv.style.display = "block";
-            } else {
-                profileInfoDiv.style.display = "none";
-            }
+        .addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevent event propagation
+            toggleVisibility("profileInfo");
         });
+
     document
         .getElementById("shopButton")
-        .addEventListener("click", function () {
-            var shopInfoDiv = document.getElementById("shopInfo");
-            if (shopInfoDiv.style.display === "none") {
-                shopInfoDiv.style.display = "block";
-            } else {
-                shopInfoDiv.style.display = "none";
-            }
+        .addEventListener("click", function (event) {
+            event.stopPropagation(); // Prevent event propagation
+            toggleVisibility("shopInfo");
         });
+
+    // Add event listener to hide profile/shop div when clicking outside
+    document.addEventListener("click", function (event) {
+        const profileDiv = document.getElementById("profileInfo");
+        const shopDiv = document.getElementById("shopInfo");
+        if (!profileDiv.contains(event.target)) {
+            profileDiv.style.display = "none";
+        }
+        if (!shopDiv.contains(event.target)) {
+            shopDiv.style.display = "none";
+        }
+    });
 });
+
+function toggleVisibility(divId) {
+    var div = document.getElementById(divId);
+    if (div.style.display === "none") {
+        div.style.display = "block";
+    } else {
+        div.style.display = "none";
+    }
+}
