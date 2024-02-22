@@ -9,8 +9,8 @@ I think there are requirements for all this stuff to be done properly, therefore
 
 Current split of responsibilities:
 - Frontend: Ross, Tom
-- Backend: James, Matthew
+- Backend: James, Matthew, Lewis
 - Documentation: Emily
-- Unassigned: Lewis
+- Unassigned:
 
 The above should be updated as necessary should people switch between areas.
