@@ -6,7 +6,7 @@ from django.db import models
 class User(models.Model):
     username = models.CharField(max_length=200, primary_key=True)
     email = models.EmailField(max_length=200)
-    profile_image = models.ImageField(upload_to='profile_images/', default='profile_images/'+username+'.jpg')
+    profile_image = models.ImageField(upload_to='profile_images/', default='profile_images/default.jpg')
     # these should be stored hashed not raw
     password = models.CharField(max_length=200)
     coins = models.IntegerField(default=0)
