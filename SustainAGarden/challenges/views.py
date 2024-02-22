@@ -2,7 +2,7 @@ from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 
-from . import setChallengeForm
+from . import SetChallengeForm
 
 # Create your views here.
 
@@ -25,11 +25,11 @@ def challenge(request, challenge_id):
 
 def setChallenge(request):
     if request.method == "POST":
-        form = setChallengeForm(request.POST)
+        form = SetChallengeForm(request.POST)
         if form.is_valid():
             return HttpResponse("thanks for the challenge!")
 
     else:
-        form = setChallengeForm()
+        form = SetChallengeForm()
 
     return render(request, "name.html", {"form": form})
