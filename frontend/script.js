@@ -3,6 +3,9 @@ function create_grid(width, height) {
     for (let i = 0; i < width * height; i++) {
         const tile = document.createElement("div");
         tile.classList.add("tile");
+        // make clickable:
+        tile.setAttribute("data-index", i); // store index.
+        tile.addEventListener("click", tileClickHandler); // add click event.
         plot.appendChild(tile);
     }
 }
@@ -52,4 +55,13 @@ function toggleVisibility(divId) {
     } else {
         div.style.display = "none";
     }
+}
+
+function tileClickHandler(event) {
+    // get the index of the clicked tile.
+    const index = event.target.getAttribute("data-index");
+    event.stopPropagation();
+    toggleVisibility("shopInfo");
+    console.log("Tile index", index, " clicked.");
+    
 }

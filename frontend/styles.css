@@ -43,6 +43,10 @@ body {
     align-items: center;
 }
 
+.tile:hover {
+    background-color: #999999;
+}
+
 #profileInfo,
 #shopInfo {
     position: fixed;
