@@ -43,6 +43,10 @@ body {
     align-items: center;
 }
 
+.tile:hover {
+    background-color: #999999;
+}
+
 #profileInfo,
 #shopInfo {
     position: fixed;
@@ -101,4 +105,24 @@ body {
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px; /* Add margin for spacing */
+}
+
+#item-board {
+    display: flex;
+    justify-content: center;
+}
+.item {
+    background-color: #999999;
+    height: 70px;
+    width: 70px;
+    border: 5px #FFF solid;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+.item:hover {
+    background-color: #AAA;
 }

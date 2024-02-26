@@ -1,8 +1,13 @@
+var recent_tile;
+
 function create_grid(width, height) {
     const plot = document.getElementById("plot-container");
     for (let i = 0; i < width * height; i++) {
         const tile = document.createElement("div");
         tile.classList.add("tile");
+        // make clickable:
+        tile.setAttribute("data-index", i); // store index.
+        tile.addEventListener("click", tileClickHandler); // add click event.
         plot.appendChild(tile);
     }
 }
@@ -43,7 +48,12 @@ document.addEventListener("DOMContentLoaded", function () {
             shopDiv.style.display = "none";
         }
     });
+
+    document.getElementById("flower").addEventListener("click", purchase);
+    document.getElementById("tree").addEventListener("click", purchase);
+    document.getElementById("grass").addEventListener("click", purchase);
 });
+
 
 function toggleVisibility(divId) {
     var div = document.getElementById(divId);
@@ -51,5 +61,46 @@ function toggleVisibility(divId) {
         div.style.display = "block";
     } else {
         div.style.display = "none";
+    }
+}
+
+function tileClickHandler(event) {
+    // get the index of the clicked tile.
+    const index = event.target.getAttribute("data-index");
+    event.stopPropagation();
+    toggleVisibility("shopInfo");
+    recent_tile = index;
+    console.log("Tile index", index, " clicked.");
+}
+
+function purchase(event) {
+    event.stopPropagation();
+    // get item id
+    const type = event.target.id;
+
+    /*
+    Add code to remove amount from the user's currency.
+    */
+
+    const tile = get_tile(recent_tile);
+    if (event.target.id === "flower") {
+        tile.textContent = "F";
+    } else if (event.target.id === "tree") {
+        tile.textContent = "T";
+    } else if (event.target.id === "grass") {
+        tile.textContent = "G";
+    }
+    toggleVisibility("shopInfo");
+}
+
+function get_tile(index) {
+    const plot_cont = document.getElementById("plot-container");
+    const tiles = plot_cont.childNodes;
+
+    if (index >= 0 && index < tiles.length) {
+        return tiles[index];
+    } else {
+        console.error("Invalid tile index:", index);
+        return null;
     }
 }
