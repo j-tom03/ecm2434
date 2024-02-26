@@ -1,9 +1,13 @@
+from django.contrib.auth import authenticate
 from django.template import loader
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404
 
 from . import models
 from .forms import SetChallengeForm, UserForm, LoginForm, CompleteChallengeForm
+from stats import generate_statistics_context
+
+import hashlib
 
 # Create your views here.
 
@@ -13,7 +17,12 @@ def index(request):
         if request.POST["form_id"] == "login":
             form = LoginForm(request.POST)
             if form.is_valid():
-                context = generate_user_context(form.cleaned_data["username"])
+                user = authenticate(username=form.cleaned_data["username"], password=hashlib.sha256(form.cleaned_data["password"]))
+                if user.institution:
+                    return render(request, "statistics.html", generate_statistics_context())
+                context = generate_user_context(user)
+            else:
+                context["login_error"] = "Incorrect username or password"
 
 
         elif request.POST["form_id"] == "register":
@@ -48,15 +57,16 @@ def setChallenge(request):
 
     return render(request, "name.html", {"form": form})
 
-def generate_user_context(username):
-    context = {"username": username}
-    context["challenges_completed"] = len(models.User.objects.get(username=username).completed_challenges)
-    context["coins"] = models.User.objects.get(username=username).coins
-    context["garden"] = models.User.objects.get(username=username).garden
-    context["challenges"] = models.Challenge.objects.all()
-    context["profile_image"] = models.User.objects.get(username=username).profile_image
+def generate_user_context(user):
+    context = {"username": user.username}
+    context["challenges_completed"] = len(user.completed_challenges)
+    context["coins"] = user.coins
+    context["garden"] = user.garden
+    context["challenges"] = models.Challenge.objects.filter(challenge_setter=user)
+    context["profile_image"] = user.profile_image
     return context
 
 def populate_user_model(data):
-    user = models.User(username=data["username"], email=data["email"], profile_image=data["profile_image"], password=data["password"])
+    user = models.User(username=data["username"], email=data["email"], profile_image=data["profile_image"],
+                       password=hashlib.sha256(["password"]))
     user.save()

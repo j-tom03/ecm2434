@@ -12,10 +12,12 @@ class User(models.Model):
     coins = models.IntegerField(default=0)
     completed_challenges = models.IntegerField(default=0)
     setter = models.BooleanField(default=False)
+    institution = models.BooleanField(default=False)
     garden = models.CharField(max_length=200, default="default_garden")
 
     def __str__(self):
-        return self.username
+        return f"{self.username}{', setter' if self.setter == True else ''}" \
+               f"{', institution' if self.institution == True else ''}"
 
 
 class Challenge(models.Model):
