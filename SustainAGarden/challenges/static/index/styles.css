@@ -29,18 +29,22 @@ body {
 #plot-wrapper {
     display: flex;
     justify-content: center;
-    padding-top: 130px;
+    padding-top: 50px;
 }
 
 .tile {
-    background-color: white;
-    border: 1px solid #999999;
+    background-color: rgb(121, 84, 47);
+    border: 1px solid rgb(122, 89, 57);
     height: 50px;
     width: 50px;
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.tile:hover {
+    background-color: #999999;
 }
 
 #profileInfo,
@@ -101,4 +105,33 @@ body {
     font-size: 24px;
     text-align: center;
     margin-bottom: 20px; /* Add margin for spacing */
+}
+
+#item-board {
+    display: flex;
+    justify-content: center;
+}
+.item {
+    background-color: #999999;
+    height: 70px;
+    width: 70px;
+    border: 5px #fff solid;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+.item:hover {
+    background-color: #aaa;
+}
+
+form {
+    margin: 0 auto;
+    width: 300px;
+}
+
+input {
+    width: 100%;
 }

@@ -9,30 +9,45 @@
         <title>SustainAGarden</title>
     </head>
     <body>
+        {% if user.is_authenticated %}
         <div class="nav">
             <div id="title">SustainAGarden</div>
             <button id="profileButton">Profile</button>
-            <button id="shopButton">Shop</button>
-            <div id="points">Coins: 0</div>
+            <button id="shopButton">shop</button>
+            <div id="points">Points: </div> <!-- Points from account -->
         </div>
         <div id="profileInfo" style="display: none">
-            <div class="profileHeader">John Doe</div>
+            <div class="profileHeader">User</div> <!-- Username -->
             <div class="profileContent">
-                <div class="profileAvatar">
-                    <img src="../static/index/avatar.jpg" alt="Avatar" />
+                <div class="profileAvatar"> 
+                    <img src="../static/index/avatar.jpg" alt="Avatar" /> <!-- profile image from user -->
                 </div>
                 <div class="profileDetails">
-                    <div class="challengeCounter">Challenges Completed: 10</div>
-                    <div class="pointsCounter">Points: 100</div>
+                    <div class="challengeCounter">Challenges Completed: </div> <!-- challenge count from user -->
+                    <div class="pointsCounter">Points: </div> <!-- points from account -->
                 </div>
             </div>
         </div>
         <div id="shopInfo" style="display: none">
             <div class="shopHeader">Shop</div>
+            <div id="item-board">
+                <div class="item" id="flower">F</div>
+                <div class="item" id="tree">T</div>
+                <div class="item" id="grass">G</div>
+            </div>
         </div>
         <div id="plot-wrapper"><div id="plot-container"></div></div>
         <script>
             create_grid(16, 10);
         </script>
+        {% else %}
+        <h1>Log in to your Account</h1>
+        <form action="/challenges/" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="form_id" value="login">
+            {{ login_form }}
+            <input type="submit" value="Submit">
+        </form>
+        {% endif %}
     </body>
 </html>
