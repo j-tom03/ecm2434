@@ -10,6 +10,8 @@ def index(request):
     context = {}
     return render(request, "index.html", context)
 
+def statistics(request):
+    return render(request, "statistics.html")
 
 def login(request):
     pass
