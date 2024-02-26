@@ -12,6 +12,7 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     width: 300px;
+    margin: 5px;
 }
 
 #points {
@@ -19,6 +20,17 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     width: 100px;
+    margin: 5px;
+}
+
+#main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#plot-wrapper {
+    flex: 1;
 }
 
 #plot-container {
@@ -29,14 +41,27 @@ body {
 #plot-wrapper {
     display: flex;
     justify-content: center;
-    padding-top: 50px;
+    padding-top: 40px;
+}
+
+#challenges {
+    border: 1px solid #999;
+    padding-left: 15px;
+    padding-right: 20px;
+    height: 300px;
+    width: 155px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    margin-right: 20px;
 }
 
 .tile {
     background-color: white;
     border: 1px solid #999999;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     text-align: center;
     display: flex;
     justify-content: center;
@@ -65,6 +90,16 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#title img {
+    max-width: 100%; /* Set maximum width to 100% of the container */
+    max-height: 30px; /* Set maximum height to 100% of the container */
+}
+
+#profileButton,
+#shopButton {
+    margin: 5px;
 }
 
 .profileContent {
