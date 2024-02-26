@@ -12,6 +12,7 @@ class User(models.Model):
     coins = models.IntegerField(default=0)
     completed_challenges = models.IntegerField(default=0)
     setter = models.BooleanField(default=False)
+    garden = models.CharField(max_length=200, default="default_garden")
 
     def __str__(self):
         return self.username

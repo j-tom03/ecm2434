@@ -7,5 +7,14 @@ class UserForm(forms.Form):
     profile_image = forms.ImageField(label='Profile Image')
     password = forms.CharField(label='Password', max_length=200, widget=forms.PasswordInput)
 
+
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Username', max_length=200)
+    password = forms.CharField(label="Password", max_length=200, widget=forms.PasswordInput)
+
+
 class SetChallengeForm(forms.Form):
     challenge = forms.CharField(label='Challenge', max_length=200)
+
+class CompleteChallengeForm(forms.Form):
+    pass
