@@ -11,7 +11,9 @@
     <body>
         {% if user.is_authenticated %}
         <div class="nav">
-            <div id="title">SustainAGarden</div>
+            <div id="title">
+                <!-- <img src="SustainAGarden-logo.jpg" alt="Logo" />-->
+            </div>
             <button id="profileButton">Profile</button>
             <button id="shopButton">shop</button>
             <div id="points">Points: </div> <!-- Points from account -->
@@ -36,7 +38,15 @@
                 <div class="item" id="grass">G</div>
             </div>
         </div>
-        <div id="plot-wrapper"><div id="plot-container"></div></div>
+        <div id="main-container">
+            <div id="plot-wrapper"><div id="plot-container"></div></div>
+            <div id="challenges">
+                <h3>Challenges</h3>
+                <li>challenge1</li>
+                <li>challenge2</li>
+                <li>challenge3</li>
+            </div>
+        </div>
         <script>
             create_grid(16, 10);
         </script>
