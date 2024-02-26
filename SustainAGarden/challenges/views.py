@@ -5,7 +5,7 @@ from django.http import HttpResponse, Http404
 
 from . import models
 from .forms import SetChallengeForm, UserForm, LoginForm, CompleteChallengeForm
-from stats import generate_statistics_context
+from .stats import generate_statistics_context
 
 import hashlib
 
