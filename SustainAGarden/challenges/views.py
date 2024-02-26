@@ -26,10 +26,10 @@ def index(request):
         elif request.POST["form_id"] == "complete_challenge":
             form = CompleteChallengeForm(request.POST)
 
-        else:
-            context["login_form"] = LoginForm()
-            context["register_form"] = UserForm()
-            context["complete_challenge_form"] = CompleteChallengeForm()
+    else:
+        context["login_form"] = LoginForm()
+        context["register_form"] = UserForm()
+        context["complete_challenge_form"] = CompleteChallengeForm()
 
 
     return render(request, "index.html", context)
