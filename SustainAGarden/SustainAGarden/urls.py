@@ -20,4 +20,5 @@ urlpatterns = [
     path("challenges/", include("challenges.urls")),
     path('admin/', admin.site.urls),
     path('factmatch/', include('factmatch.urls')),
+    path('statistics/', include("challenges.urls"))
 ]
