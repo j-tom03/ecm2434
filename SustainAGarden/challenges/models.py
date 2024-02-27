@@ -1,44 +1,46 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
-
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from .managers import CustomUserManager
 
 # Create your models here
 
-class CustomUserManager(BaseUserManager):
-    def create_user(self, username, email, password, **extra_fields):
-        if not username:
-            raise ValueError('The username must be set')
-        email = self.normalize_email(email)
-        user = self.model(username=username, email=email, **extra_fields)
-        user.set_password(password)
-        user.save(using=self._db)
-        return user
 
-
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=200, primary_key=True, blank=False)
     email = models.EmailField(max_length=200, blank=False)
     profile_image = models.ImageField(upload_to='profile_images/', default='profile_images/default.jpg')
     # these should be stored hashed not raw
-    password = models.CharField(max_length=200, blank=False)
     coins = models.IntegerField(default=0)
     completed_challenges = models.CharField(default="", max_length=10)
     setter = models.BooleanField(default=False)
     institution = models.BooleanField(default=False)
     garden = models.CharField(max_length=200, default="default_garden")
+    is_staff = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(auto_now=True)
-    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
+
+    REQUIRED_FIELDS = ["email"]
     USERNAME_FIELD = "username"
-    PASSWORD_FIELD = "password"
-    EMAIL_FIELD = "email"
     is_anonymous = False
     is_authenticated = True
-    objects = CustomUserManager()
+
 
 
     def __str__(self):
         return f"{self.username}{', setter' if self.setter == True else ''}" \
                f"{', institution' if self.institution == True else ''}"
+
+    def has_perm(self, perm, obj=None):
+        "Does the user have a specific permission?"
+        # Simplest possible answer: Yes, always
+        return True
+
+    def has_module_perms(self, app_label):
+        "Does the user have permissions to view the app `app_label`?"
+        # Simplest possible answer: Yes, always
+        return True
 
 
 
