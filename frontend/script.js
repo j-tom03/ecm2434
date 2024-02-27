@@ -54,7 +54,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("grass").addEventListener("click", purchase);
 });
 
-
 function toggleVisibility(divId) {
     var div = document.getElementById(divId);
     if (div.style.display === "none") {
@@ -104,3 +103,21 @@ function get_tile(index) {
         return null;
     }
 }
+
+document.addEventListener("DOMContentLoaded", function () {
+    var bottomBarButton = document.getElementById("bottomBarButton");
+    var bottomBarContent = document.getElementById("bottomBarContent");
+    var bottomBar = document.getElementById("bottomBar");
+
+    bottomBarButton.addEventListener("click", function () {
+        if (bottomBarContent.style.display === "none") {
+            bottomBarContent.style.display = "block";
+            bottomBarButton.innerHTML = "&#8595;"; // Change arrow direction
+            bottomBar.classList.add("open"); // Add 'open' class
+        } else {
+            bottomBarContent.style.display = "none";
+            bottomBarButton.innerHTML = "&#8593;"; // Change arrow direction
+            bottomBar.classList.remove("open"); // Remove 'open' class
+        }
+    });
+});
