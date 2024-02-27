@@ -17,20 +17,24 @@ def index(request):
         if request.POST["form_id"] == "login":
             form = LoginForm(request.POST)
             if form.is_valid():
-                user = authenticate(username=form.cleaned_data["username"], password=hashlib.sha256(form.cleaned_data["password"]))
+                user = authenticate(request, username=form.cleaned_data["username"], password=form.cleaned_data["password"])
+                if user is None:
+                    context["login_form"] = LoginForm()
+                    context["register_form"] = UserForm()
+                    context["complete_challenge_form"] = CompleteChallengeForm()
+                    context["login_error"] = "Incorrect username or password"
+                    return render(request, "index.html", context)
                 if user.institution:
                     return render(request, "statistics.html", generate_statistics_context())
                 context = generate_user_context(user)
             else:
                 context["login_error"] = "Incorrect username or password"
 
-
         elif request.POST["form_id"] == "register":
             form = UserForm(request.POST)
             if form.is_valid():
                 context = generate_user_context(form.cleaned_data["username"])
                 populate_user_model(context)
-
 
         elif request.POST["form_id"] == "complete_challenge":
             form = CompleteChallengeForm(request.POST)
@@ -39,7 +43,6 @@ def index(request):
         context["login_form"] = LoginForm()
         context["register_form"] = UserForm()
         context["complete_challenge_form"] = CompleteChallengeForm()
-
 
     return render(request, "index.html", context)
 
@@ -59,7 +62,7 @@ def setChallenge(request):
 
 def generate_user_context(user):
     context = {"username": user.username}
-    context["challenges_completed"] = len(user.completed_challenges)
+    context["challenges_completed"] = len(user.completed_challenges.split(","))
     context["coins"] = user.coins
     context["garden"] = user.garden
     context["challenges"] = models.Challenge.objects.filter(challenge_setter=user)
@@ -68,5 +71,5 @@ def generate_user_context(user):
 
 def populate_user_model(data):
     user = models.User(username=data["username"], email=data["email"], profile_image=data["profile_image"],
-                       password=hashlib.sha256(["password"]))
+                       password=data["password"])
     user.save()

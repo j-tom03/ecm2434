@@ -83,8 +83,10 @@
             {% csrf_token %}
             <input type="hidden" name="form_id" value="login" />
             {{ login_form }}
-            <input type="submit" value="Submit" />
+            <div>{{ login_error }}</div>
+            <input type="submit" value="Submit">
         </form>
+
         {% endif %}
     </body>
 </html>
