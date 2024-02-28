@@ -11,20 +11,27 @@
     <body>
         {% if user.is_authenticated %}
         <div class="nav">
-            <div id="title">SustainAGarden</div>
+            <div id="title">
+                <!-- <img src="SustainAGarden-logo.jpg" alt="Logo" />-->
+            </div>
             <button id="profileButton">Profile</button>
             <button id="shopButton">shop</button>
-            <div id="points">Points: </div> <!-- Points from account -->
+            <div id="points">Points: {{coins}}</div>
+            <!-- Points from account -->
         </div>
         <div id="profileInfo" style="display: none">
-            <div class="profileHeader">User</div> <!-- Username -->
+            <div class="profileHeader">{{username}}</div>
+            <!-- Username -->
             <div class="profileContent">
-                <div class="profileAvatar"> 
-                    <img src="../static/index/avatar.jpg" alt="Avatar" /> <!-- profile image from user -->
+                <div class="profileAvatar">
+                    <img src="../static/index/avatar.jpg" alt="Avatar" />
+                    <!-- profile image from user -->
                 </div>
                 <div class="profileDetails">
-                    <div class="challengeCounter">Challenges Completed: </div> <!-- challenge count from user -->
-                    <div class="pointsCounter">Points: </div> <!-- points from account -->
+                    <div class="challengeCounter">Challenges Completed: {{challenges_completed}}</div>
+                    <!-- challenge count from user -->
+                    <div class="pointsCounter">Points: {{coins}}</div>
+                    <!-- points from account -->
                 </div>
             </div>
         </div>
@@ -36,7 +43,37 @@
                 <div class="item" id="grass">G</div>
             </div>
         </div>
-        <div id="plot-wrapper"><div id="plot-container"></div></div>
+        <div id="main-container">
+            <div id="plot-wrapper"><div id="plot-container"></div></div>
+            <div id="challenges">
+                <h3>Challenges</h3>
+                <ul>
+                    <li>Walk 20 miles</li>
+                    <li>recycle 10 cans</li>
+                    <li>plant a tree</li>
+                </ul>
+            </div>
+        </div>
+        <div id="bottomBar">
+            <div id="bottomBarButton">&#8593;</div>
+            <div id="bottomBarContent" style="display: none">
+                <h2>Daily Tasks</h2>
+                <ol>
+                    <li><p>Sustainability ques 1. fill in the ________</p></li>
+                    <li>
+                        <p>Sustainability ques 2. this is a question</p>
+                        <p>these are answers</p>
+                    </li>
+                    <li>
+                        <p>
+                            Sustainability ____ 3. Choose the _____ to fill in
+                            the _____
+                        </p>
+                        <p>ques words blanks</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
         <script>
             create_grid(16, 10);
         </script>
@@ -44,8 +81,9 @@
         <h1>Log in to your Account</h1>
         <form action="/challenges/" method="post">
             {% csrf_token %}
-            <input type="hidden" name="form_id" value="login">
+            <input type="hidden" name="form_id" value="login" />
             {{ login_form }}
+            <div>{{ login_error }}</div>
             <input type="submit" value="Submit">
         </form>
         {% endif %}
