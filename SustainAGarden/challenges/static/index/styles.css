@@ -209,7 +209,7 @@ ul {
 }
 
 #bottomBar.open {
-    top: calc(100% - 450px);
+    top: calc(100% - 650px);
 }
 
 #blank-answers {
