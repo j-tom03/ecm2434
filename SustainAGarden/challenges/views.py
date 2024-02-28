@@ -34,7 +34,10 @@ def index(request):
         elif request.POST["form_id"] == "register":
             form = UserForm(request.POST)
             if form.is_valid():
-                context = generate_user_context(get_object_or_404(models.User, form.cleaned_data["username"]))
+                form.save()
+                user = authenticate(request, username=form.cleaned_data["username"], password=form.cleaned_data["password1"])
+                login(request, user)
+                context = generate_user_context(user)
 
         elif request.POST["form_id"] == "complete_challenge":
             form = CompleteChallengeForm(request.POST)
