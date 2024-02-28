@@ -28,7 +28,9 @@
                     <!-- profile image from user -->
                 </div>
                 <div class="profileDetails">
-                    <div class="challengeCounter">Challenges Completed: {{challenges_completed}}</div>
+                    <div class="challengeCounter">
+                        Challenges Completed: {{challenges_completed}}
+                    </div>
                     <!-- challenge count from user -->
                     <div class="pointsCounter">Points: {{coins}}</div>
                     <!-- points from account -->
@@ -84,7 +86,7 @@
             <input type="hidden" name="form_id" value="login" />
             {{ login_form }}
             <div>{{ login_error }}</div>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" />
         </form>
         {% endif %}
     </body>

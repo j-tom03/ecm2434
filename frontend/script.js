@@ -84,10 +84,13 @@ function purchase(event) {
     const tile = get_tile(recent_tile);
     if (event.target.id === "flower") {
         tile.textContent = "F";
+        tile.style.backgroundColor = "pink";
     } else if (event.target.id === "tree") {
         tile.textContent = "T";
+        tile.style.backgroundColor = "green";
     } else if (event.target.id === "grass") {
         tile.textContent = "G";
+        tile.style.backgroundColor = "lightgreen";
     }
     toggleVisibility("shopInfo");
 }
