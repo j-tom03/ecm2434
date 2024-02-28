@@ -192,7 +192,6 @@ ul {
 }
 
 #bottomBarContent {
-    display: none;
     text-align: center;
     transition: opacity 0.5s ease;
 }
@@ -211,4 +210,27 @@ ul {
 
 #bottomBar.open {
     top: calc(100% - 350px); /* Move the bottom bar up by 60px when open */
+}
+
+#blank-answers {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#blank-answers li {
+    padding: 20px;
+}
+
+
+#blank-answers {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    list-style-type: none;
+}
+
+#blank-answers li {
+    padding: 20px;
 }

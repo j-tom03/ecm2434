@@ -61,21 +61,74 @@
         <div id="bottomBar">
             <div id="bottomBarButton">&#8593;</div>
             <div id="bottomBarContent" style="display: none">
-                <h2>Daily Tasks</h2>
-                <ol>
-                    <li><p>Sustainability ques 1. fill in the ________</p></li>
-                    <li>
-                        <p>Sustainability ques 2. this is a question</p>
-                        <p>these are answers</p>
-                    </li>
-                    <li>
-                        <p>
-                            Sustainability ____ 3. Choose the _____ to fill in
-                            the _____
-                        </p>
-                        <p>ques words blanks</p>
-                    </li>
-                </ol>
+                <div id="game-board">
+                    <div class="personal-challenges" id="challenge1">
+                        <div class="question">
+                            How long has the University of Exeter been powered solely by renewable energy?
+                            <div class="reward">30</div>
+                        </div>
+                        <div>
+                            <ul class="answers">
+                            <li><label><input type="radio" name="ans-q1" id="ans1" value="6"><span>6 Years</span></label></li>
+                            <li><label><input type="radio" name="ans-q1" id="ans2" value="7"><span>7 Years</span></label></li>
+                            <li><label><input type="radio" name="ans-q1"  id="ans3" value="2"><span>2 Years</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="personal-challenges" id="challenge2">
+                        <div class="question">
+                            How many Vegan & Vegatarian Meals did the University of Exeter serve, across their campuses, in the 22-23 education year?
+                            <div class="reward">30</div>
+                        </div>
+                        <div>
+                            <ul class="answers">
+                            <li><label><input type="radio" name="ans-q2" id="ans4" value="103000"><span>103,000</span></label></li>
+                            <li><label><input type="radio" name="ans-q2" id="ans5" value="94000"><span>94,000</span></label></li>
+                            <li><label><input type="radio" name="ans-q2"  id="ans6" value="98500"><span>98,500</span></label></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="personal-challenges" id="challenge3">
+                        <div id="blanks-game">
+                        <div id="quote">
+                        We use ___ take away eco-packaging in many of our cafes. 
+                        This environmentally friendly alternative to ___ and other oil-based plastic packaging is designed to have 
+                        minimal impact on the environment and is made from sustainable, 
+                        ___ materials that will break down in composting environments. Planglow work with mills that source their 
+                        raw materials - ___ and corn starch - from renewable growth forests or ___.
+                        <div class="reward">30</div>
+                        </div>
+                        <div id="blank-answers">
+                            <div id="blank-1">
+                                <li><label><input type="radio" name="ans-b1" id="b1" value="planglow"><span>planglow</span></label></li>
+                                <li><label><input type="radio" name="ans-b1" id="b2" value="paper"><span>paper</span></label></li>
+                                <li><label><input type="radio" name="ans-b1"  id="b3" value="enviropack"><span>enviropack</span></label></li>
+                            </div>
+                            <div id="blank-2">
+                                <li><label><input type="radio" name="ans-b2" id="b4" value="cardboard"><span>cardboard</span></label></li>
+                                <li><label><input type="radio" name="ans-b2" id="b5" value="plastic"><span>plastic</span></label></li>
+                                <li><label><input type="radio" name="ans-b2"  id="b6" value="polystyrene"><span>polystyrene</span></label></li>
+                            </div>
+                            <div id="blank-3">
+                                <li><label><input type="radio" name="ans-b3" id="b7" value="plant-based"><span>plant-based</span></label></li>
+                                <li><label><input type="radio" name="ans-b3" id="b8" value="recyclable"><span>recyclable</span></label></li>
+                                <li><label><input type="radio" name="ans-b3"  id="b9" value="compostable"><span>compostable</span></label></li>
+                            </div>
+                            <div id="blank-4">
+                                <li><label><input type="radio" name="ans-b4" id="b10" value="paper"><span>paper</span></label></li>
+                                <li><label><input type="radio" name="ans-b4" id="b11" value="grain"><span>grain</span></label></li>
+                                <li><label><input type="radio" name="ans-b4"  id="b12" value="wood"><span>wood</span></label></li>
+                            </div>
+                            <div id="blank-5">
+                                <li><label><input type="radio" name="ans-b5" id="b13" value="farms"><span>farms</span></label></li>
+                                <li><label><input type="radio" name="ans-b5" id="b14" value="plantations"><span>plantations</span></label></li>
+                                <li><label><input type="radio" name="ans-b5"  id="b15" value="woodlands"><span>woodlands</span></label></li>
+                            </div>
+                        </div>
+                        </div>
+                        <button onclick="checkAnswers()">Check</button>
+                    </div>
+                </div>
             </div>
         </div>
         <script>
