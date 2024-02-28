@@ -12,13 +12,13 @@
         {% if user.is_authenticated %}
         <div class="nav">
             <div id="title">
-                <!-- <img src="SustainAGarden-logo.jpg" alt="Logo" />-->
+                <img src="../static/index/Logo.png" alt="Logo" />
             </div>
             <button id="profileButton">Profile</button>
             {% if user.setter %}
             <button id="add_challenge" action="/challangeset">
             {% endif %}
-            <button id="shopButton">shop</button>
+            <button id="shopButton">Shop</button>
             <div id="coins">Coins: {{coins}}</div> <!-- coins from account -->
             <form action="/challenges/" method="post">
                 {% csrf_token %}
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div id="bottomBar">
-            <div id="bottomBarButton">&#8593;</div>
+            <div id="bottomBarButton"><img src="../static/index/up.png" alt=""></div>
             <div id="bottomBarContent" style="display: none">
                 <div id="game-board">
                     <div class="personal-challenges" id="challenge1">
