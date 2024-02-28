@@ -45,8 +45,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Challenge(models.Model):
     challenge_ID = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    transport = models.BooleanField()
-    description = models.TextField()
+    transport = models.BooleanField(default=False)
+    description = models.TextField(default="")
     coins = models.IntegerField()
     # only used if the challenges is a transport challenge, use what three words?
     start_point = models.CharField(default="000, 000, 000", max_length=200)
