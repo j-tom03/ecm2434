@@ -1,4 +1,5 @@
 var recent_tile;
+var balance = 0;
 
 function create_grid(width, height) {
     const plot = document.getElementById("plot-container");
@@ -72,22 +73,34 @@ function tileClickHandler(event) {
     console.log("Tile index", index, " clicked.");
 }
 
+function load_balance() {
+    var coins_string = document.getElementById("coins").textContent;
+    balance = parseInt(coins_string.match(/\d+/)[0], 10);
+    console.log("Current Balance: " + balance);
+}
+
 function purchase(event) {
     event.stopPropagation();
-    // get item id
-    const type = event.target.id;
-
     /*
-    Add code to remove amount from the user's currency.
+    Costs: 
+    Flower = 20
+    Tree = 40
+    Grass = 10
     */
 
     const tile = get_tile(recent_tile);
-    if (event.target.id === "flower") {
+    if (event.target.id === "flower" && balance >= 20) {
         tile.textContent = "F";
-    } else if (event.target.id === "tree") {
+        tile.style.backgroundColor = "pink";
+        update_balance(20, "subtract");
+    } else if (event.target.id === "tree" && balance >= 40) {
         tile.textContent = "T";
-    } else if (event.target.id === "grass") {
+        tile.style.backgroundColor = "green";
+        update_balance(40, "subtract");
+    } else if (event.target.id === "grass" && balance >= 10) {
         tile.textContent = "G";
+        tile.style.backgroundColor = "lightgreen";
+        update_balance(10, "subtract");
     }
     toggleVisibility("shopInfo");
 }
@@ -104,6 +117,18 @@ function get_tile(index) {
     }
 }
 
+// update balance for when an item is bought
+function update_balance(cost, operation) {
+    if (operation === "add") {
+        balance += cost;
+    } else {
+        balance -= cost;
+    }
+    var balance_string = "Coins: " + balance;
+    document.getElementById("coins").textContent = balance_string;
+    document.getElementById("coinsCounter").textContent = balance_string;
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     var bottomBarButton = document.getElementById("bottomBarButton");
     var bottomBarContent = document.getElementById("bottomBarContent");
@@ -112,12 +137,60 @@ document.addEventListener("DOMContentLoaded", function () {
     bottomBarButton.addEventListener("click", function () {
         if (bottomBarContent.style.display === "none") {
             bottomBarContent.style.display = "block";
-            bottomBarButton.innerHTML = "&#8595;"; // Change arrow direction
-            bottomBar.classList.add("open"); // Add 'open' class
+            bottomBarButton.innerHTML =
+                '<img src="../static/index/down.png" alt="">';
+
+            bottomBar.classList.add("open");
         } else {
             bottomBarContent.style.display = "none";
-            bottomBarButton.innerHTML = "&#8593;"; // Change arrow direction
-            bottomBar.classList.remove("open"); // Remove 'open' class
+            bottomBarButton.innerHTML =
+                '<img src="../static/index/up.png" alt="">';
+            bottomBar.classList.remove("open");
         }
     });
 });
+
+function checkAnswers() {
+    let rewards = 0;
+
+    // Check answers for challenge 1
+    let q1Answer = document.querySelector('input[name="ans-q1"]:checked');
+    if (q1Answer && q1Answer.value === "7") {
+        rewards += parseInt(
+            document.querySelector("#challenge3 .reward").textContent
+        );
+    }
+
+    // Check answers for challenge 2
+    let q2Answer = document.querySelector('input[name="ans-q2"]:checked');
+    if (q2Answer && q2Answer.value === "103000") {
+        rewards += parseInt(
+            document.querySelector("#challenge3 .reward").textContent
+        );
+    }
+
+    // Check answers for challenge 3
+    let blanks = document.querySelectorAll('#challenge3 input[name^="ans-b"]');
+    let blankAnswers = [];
+    blanks.forEach((blank) => {
+        if (blank.checked) {
+            blankAnswers.push(blank.value);
+        }
+    });
+    if (
+        blankAnswers.length === 5 &&
+        blankAnswers[0] === "planglow" &&
+        blankAnswers[1] === "polystyrene" &&
+        blankAnswers[2] === "plant-based" &&
+        blankAnswers[3] === "wood" &&
+        blankAnswers[4] === "plantations"
+    ) {
+        rewards += parseInt(
+            document.querySelector("#challenge3 .reward").textContent
+        );
+    }
+
+    document.getElementById("bottomBar").style.display = "none";
+    alert(rewards + " Coins won.");
+    update_balance(rewards, "add");
+}
