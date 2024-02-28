@@ -20,7 +20,7 @@ img[src="SustainAGarden-logo.jpg"] {
     height: 50px;
 }
 
-#points {
+#coins {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 10px;
@@ -137,8 +137,8 @@ ul {
 }
 
 .challengeCounter,
-.pointsCounter {
-    margin-top: 10px;
+.coinsCounter {
+    margin-top: 10px; /* Add margin for spacing between counters */
 }
 
 .shopHeader {

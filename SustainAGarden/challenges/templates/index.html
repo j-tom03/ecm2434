@@ -15,25 +15,27 @@
                 <!-- <img src="SustainAGarden-logo.jpg" alt="Logo" />-->
             </div>
             <button id="profileButton">Profile</button>
+            {% if user.setter %}
+            <button id="add_challenge" action="/challangeset">
+            {% endif %}
             <button id="shopButton">shop</button>
-            <div id="points">Points: {{coins}}</div>
-            <!-- Points from account -->
+            <div id="coins">Coins: {{coins}}</div> <!-- coins from account -->
+            <form action="/challenges/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="form_id" value="logout">
+                <input type="submit" value="Logout">
+            </form>
         </div>
         <div id="profileInfo" style="display: none">
-            <div class="profileHeader">{{username}}</div>
-            <!-- Username -->
+            <div class="profileHeader">{{username}}</div> <!-- username -->
             <div class="profileContent">
                 <div class="profileAvatar">
                     <img src="../static/index/avatar.jpg" alt="Avatar" />
                     <!-- profile image from user -->
                 </div>
                 <div class="profileDetails">
-                    <div class="challengeCounter">
-                        Challenges Completed: {{challenges_completed}}
-                    </div>
-                    <!-- challenge count from user -->
-                    <div class="pointsCounter">Points: {{coins}}</div>
-                    <!-- points from account -->
+                    <div class="challengeCounter">Challenges Completed: {{challenges_completed}}</div> <!-- challenge count from user -->
+                    <div class="coinsCounter">Coins: {{coins}}</div> <!-- coins from account -->
                 </div>
             </div>
         </div>
@@ -80,14 +82,24 @@
             create_grid(16, 10);
         </script>
         {% else %}
-        <h1>Log in to your Account</h1>
-        <form action="/challenges/" method="post">
-            {% csrf_token %}
-            <input type="hidden" name="form_id" value="login" />
-            {{ login_form }}
-            <div>{{ login_error }}</div>
-            <input type="submit" value="Submit" />
-        </form>
+        <div id="login_form">
+            <h1>Log in to your Account:</h1>
+            <form action="/challenges/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="form_id" value="login">
+                {{ login_form }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div id="register_form">
+            <h1>Or Register:</h1>
+            <form action="/challenges/" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="form_id" value="register">
+                {{ register_form }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
         {% endif %}
     </body>
 </html>
