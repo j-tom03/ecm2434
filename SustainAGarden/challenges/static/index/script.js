@@ -177,6 +177,7 @@ function checkAnswers() {
     }
     
     document.getElementById("bottomBar").style.display = "none";
-    update_balance(rewards, "add");
     alert(rewards + " Coins won.");
+    update_balance(rewards, "add");
+    
 }
