@@ -1,6 +1,5 @@
 body {
     overflow: hidden;
-    background-color: rgb(238, 231, 203);
 }
 
 .nav {
@@ -8,42 +7,20 @@ body {
     justify-content: space-between;
 }
 
-#title img {
+#title {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 10px;
     width: 300px;
-    height: 50px;
-    display: block;
-    border-radius: 10px;
+    margin: 5px;
 }
 
-#title {
-    width: 300px;
-    height: 50px;
-}
-/* Adjust font size 
-#coins {
+#points {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 10px;
     width: 100px;
     margin: 5px;
-}
-*/
-#coins {
-    height: 40px;
-    width: 90px;
-    margin: 5px;
-    background-color: #7172af;
-    color: white;
-    border: solid 1px black;
-    border-radius: 5px;
-    font-size: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#coins:hover {
-    background-color: #45a049;
 }
 
 #main-container {
@@ -55,34 +32,31 @@ body {
 
 #plot-wrapper {
     flex: 1;
-    padding-top: 30px;
+    padding-top: 40px;
 }
 
 #plot-container {
     display: grid;
-    grid-template-columns: repeat(18, 60px);
+    grid-template-columns: repeat(16, 60px);
     justify-content: center;
     align-items: center;
     width: auto;
 }
-ul {
-    padding: 15px;
-    padding-left: 20px;
-    margin: 0;
-}
+
 #challenges {
     border: 1px solid #999;
-    height: auto;
+    height: 300px;
     width: 155px;
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
-    margin: 0 30px;
+    margin-left: 40px;
+    margin-right: auto;
 }
 
 .tile {
-    background-color: #714e3b;
+    background-color: white;
     border: 1px solid #999999;
     height: 60px;
     width: 60px;
@@ -116,22 +90,14 @@ ul {
     align-items: center;
 }
 
-#profileButton,
-#shopButton {
-    height: 40px;
-    padding: 10px 20px;
-    margin: 5px;
-    font-size: 16px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+#title img {
+    max-width: 100%;
+    max-height: 30px;
 }
 
-#profileButton:hover,
-#shopButton:hover {
-    background-color: #45a049;
+#profileButton,
+#shopButton {
+    margin: 5px;
 }
 
 .profileContent {
@@ -163,7 +129,7 @@ ul {
 }
 
 .challengeCounter,
-.coinsCounter {
+.pointsCounter {
     margin-top: 10px;
 }
 
@@ -207,9 +173,8 @@ ul {
     border-bottom: none;
     padding: 10px;
     z-index: 9999;
-    transition: top 0.5s ease, border-radius 0.5s ease;
+    transition: bottom 0.5s ease, border-radius 0.5s ease;
     overflow: hidden;
-    top: calc(100% - 50px);
 }
 
 #bottomBarButton {
@@ -217,11 +182,8 @@ ul {
     text-align: center;
 }
 
-#bottomBarButton img {
-    height: 30px;
-}
-
 #bottomBarContent {
+    display: none;
     text-align: center;
     transition: opacity 0.5s ease;
 }
@@ -236,30 +198,4 @@ ul {
     background-color: #f0f0f0;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-}
-
-#bottomBar.open {
-    top: calc(100% - 650px);
-}
-
-#blank-answers {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    list-style-type: none;
-}
-
-#blank-answers li {
-    padding: 20px;
-}
-
-#blank-answers {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    list-style-type: none;
-}
-
-#blank-answers li {
-    padding: 20px;
 }

@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +6,7 @@
 }
 
 body {
-  background-color: #be3535;
+  background-color: #f2f2f2;
 }
 
 .container {
@@ -50,8 +51,4 @@ a {
 
 a:hover {
   text-decoration: underline;
-}
-
-#lineChart img {
-  width: 50%;
 }
