@@ -3,7 +3,7 @@ from .models import User
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
-class UserForm(forms.Form, UserCreationForm):
+class UserForm(UserCreationForm):
 
     """username = forms.CharField(label='Username', max_length=200)
     email = forms.EmailField(label='Email', max_length=200)
@@ -14,19 +14,10 @@ class UserForm(forms.Form, UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'email', 'profile_image', 'setter', 'institution', 'password']
-
-    """def save(self, commit=True):
-        # Save the provided password in hashed format
-        user = super().save(commit=False)
-        user.set_password(self.cleaned_data["password1"])
-        if commit:
-            user.save()
-        return user"""
+        fields = ['username', 'email', 'profile_image', 'setter', 'institution', 'password1', 'password2']
 
 
 class CustomUserChangeForm(UserChangeForm):
-
     class Meta:
         model = User
         fields = ['username', 'email', 'profile_image', 'setter', 'institution', 'password']
