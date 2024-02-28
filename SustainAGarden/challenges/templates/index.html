@@ -21,6 +21,7 @@
             <button id="shopButton">shop</button>
             <div id="coins">Coins: {{coins}}</div> <!-- coins from account -->
             <form action="/challenges/" method="post">
+                {% csrf_token %}
                 <input type="hidden" name="form_id" value="logout">
                 <input type="submit" value="Logout">
             </form>
