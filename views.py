@@ -37,10 +37,18 @@ def index(request):
         elif request.POST["form_id"] == "complete_challenge":
             form = CompleteChallengeForm(request.POST)
             if form.is_valid():
-                context["date"] = datetime.today()
-                context["user"] = request.POST["user_id"]
-                context["challenge_id"] = request.POST["challenge_id"]
-                context["image_proof"] = request.POST["image_proof"]
+                if request.POST["challenge_type"] == "image":
+                    context["date"] = datetime.today()
+                    context["user"] = request.POST["user_id"]
+                    context["challenge_id"] = request.POST["challenge_id"]
+                    context["image_proof"] = request.POST["image_proof"]
+                elif request.POST["challenge_type"] == "walk_or_cycle":
+                    context["date"] = datetime.today()
+                    context["user"] = request.POST["user_id"]
+                    context["challenge_id"] = request.POST["challenge_id"]
+                    context["start_point"] = request.POST["start_point"]
+                    context["end_point"] = request.POST["end_point"]
+
 
 
     else:

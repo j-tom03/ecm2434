@@ -20,3 +20,7 @@ class SetChallengeForm(forms.Form):
 
 class CompleteChallengeForm(forms.Form):
     image_proof = forms.ImageField(label="Proof Image")
+
+class CompleteCycleChallengeForm(forms.Form):
+    start_point = forms.CharField(label="Start Point")
+    end_point = forms.CharField(label="End Point")

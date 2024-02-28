@@ -35,7 +35,18 @@ class completeChallenge(models.Model):
     challenge_ID = models.ForeignKey(Challenge, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    image_proof = models.ImageField()
 
     def __str__(self):
         return self.challenge_ID.title + " " + self.user.username
 
+
+class completeCycleChallenge(models.Model):
+    challenge_ID = models.ForeignKey(Challenge, on_delete=models.CASCADE)
+    date = models.DateField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    start_point = models.CharField(label="Start Point")
+    end_point = models.CharField(label="End Point")
+
+    def __str__(self):
+        return self.challenge_ID.title + " " + self.user.username
