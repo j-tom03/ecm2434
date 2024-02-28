@@ -137,12 +137,15 @@ document.addEventListener("DOMContentLoaded", function () {
     bottomBarButton.addEventListener("click", function () {
         if (bottomBarContent.style.display === "none") {
             bottomBarContent.style.display = "block";
-            bottomBarButton.innerHTML = "&#8595;"; // Change arrow direction
-            bottomBar.classList.add("open"); // Add 'open' class
+            bottomBarButton.innerHTML =
+                '<img src="../static/index/down.png" alt="">';
+
+            bottomBar.classList.add("open");
         } else {
             bottomBarContent.style.display = "none";
-            bottomBarButton.innerHTML = "&#8593;"; // Change arrow direction
-            bottomBar.classList.remove("open"); // Remove 'open' class
+            bottomBarButton.innerHTML =
+                '<img src="../static/index/up.png" alt="">';
+            bottomBar.classList.remove("open");
         }
     });
 });
