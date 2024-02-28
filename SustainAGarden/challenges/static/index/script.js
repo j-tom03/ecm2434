@@ -91,12 +91,15 @@ function purchase(event) {
     const tile = get_tile(recent_tile);
     if (event.target.id === "flower" && balance >= 20) {
         tile.textContent = "F";
+        tile.style.backgroundColor = "pink";
         update_balance(20, "subtract");
     } else if (event.target.id === "tree" && balance >= 40) {
         tile.textContent = "T";
+        tile.style.backgroundColor = "green";
         update_balance(40, "subtract");
     } else if (event.target.id === "grass" && balance >= 10) {
         tile.textContent = "G";
+        tile.style.backgroundColor = "lightgreen";
         update_balance(10, "subtract");
     }
     toggleVisibility("shopInfo");
@@ -149,35 +152,42 @@ function checkAnswers() {
 
     // Check answers for challenge 1
     let q1Answer = document.querySelector('input[name="ans-q1"]:checked');
-    if (q1Answer && q1Answer.value === '7') {
-        rewards += parseInt(document.querySelector('#challenge3 .reward').textContent);
+    if (q1Answer && q1Answer.value === "7") {
+        rewards += parseInt(
+            document.querySelector("#challenge3 .reward").textContent
+        );
     }
 
     // Check answers for challenge 2
     let q2Answer = document.querySelector('input[name="ans-q2"]:checked');
-    if (q2Answer && q2Answer.value === '103000') {
-        rewards += parseInt(document.querySelector('#challenge3 .reward').textContent);
+    if (q2Answer && q2Answer.value === "103000") {
+        rewards += parseInt(
+            document.querySelector("#challenge3 .reward").textContent
+        );
     }
 
     // Check answers for challenge 3
     let blanks = document.querySelectorAll('#challenge3 input[name^="ans-b"]');
     let blankAnswers = [];
-    blanks.forEach(blank => {
+    blanks.forEach((blank) => {
         if (blank.checked) {
             blankAnswers.push(blank.value);
         }
     });
-    if (blankAnswers.length === 5 &&
-        blankAnswers[0] === 'planglow' &&
-        blankAnswers[1] === 'polystyrene' &&
-        blankAnswers[2] === 'plant-based' &&
-        blankAnswers[3] === 'wood' &&
-        blankAnswers[4] === 'plantations') {
-        rewards += parseInt(document.querySelector('#challenge3 .reward').textContent);
+    if (
+        blankAnswers.length === 5 &&
+        blankAnswers[0] === "planglow" &&
+        blankAnswers[1] === "polystyrene" &&
+        blankAnswers[2] === "plant-based" &&
+        blankAnswers[3] === "wood" &&
+        blankAnswers[4] === "plantations"
+    ) {
+        rewards += parseInt(
+            document.querySelector("#challenge3 .reward").textContent
+        );
     }
-    
+
     document.getElementById("bottomBar").style.display = "none";
     alert(rewards + " Coins won.");
     update_balance(rewards, "add");
-    
 }
