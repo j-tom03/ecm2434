@@ -15,7 +15,7 @@ body {
     margin: 5px;
 }
 
-#points {
+#coins {
     background-color: #f0f0f0;
     border: 1px solid #ccc;
     padding: 10px;
@@ -129,8 +129,8 @@ body {
 }
 
 .challengeCounter,
-.pointsCounter {
-    margin-top: 10px;
+.coinsCounter {
+    margin-top: 10px; /* Add margin for spacing between counters */
 }
 
 .shopHeader {

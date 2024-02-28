@@ -1,4 +1,5 @@
 var recent_tile;
+var balance;
 
 function create_grid(width, height) {
     const plot = document.getElementById("plot-container");
@@ -72,22 +73,31 @@ function tileClickHandler(event) {
     console.log("Tile index", index, " clicked.");
 }
 
+function load_balance() {
+    var coins_string = document.getElementById("coins").textContent;
+    balance = parseInt(coins_string.match(/\d+/)[0], 10);
+    console.log("Current Balance: " + balance);
+}
+
 function purchase(event) {
     event.stopPropagation();
-    // get item id
-    const type = event.target.id;
-
     /*
-    Add code to remove amount from the user's currency.
+    Costs: 
+    Flower = 20
+    Tree = 40
+    Grass = 10
     */
 
     const tile = get_tile(recent_tile);
-    if (event.target.id === "flower") {
+    if (event.target.id === "flower" && balance >= 20) {
         tile.textContent = "F";
-    } else if (event.target.id === "tree") {
+        update_balance(20, "subtract");
+    } else if (event.target.id === "tree" && balance >= 40) {
         tile.textContent = "T";
-    } else if (event.target.id === "grass") {
+        update_balance(40, "subtract");
+    } else if (event.target.id === "grass" && balance >= 10) {
         tile.textContent = "G";
+        update_balance(10, "subtract");
     }
     toggleVisibility("shopInfo");
 }
@@ -102,6 +112,18 @@ function get_tile(index) {
         console.error("Invalid tile index:", index);
         return null;
     }
+}
+
+// update balance for when an item is bought
+function update_balance(cost, operation) {
+    if (operation === "add") {
+        balance += cost;
+    } else {
+        balance -= cost;
+    }
+    var balance_string = "Coins: " + balance;
+    document.getElementById("coins").textContent = balance_string;
+    document.getElementById("coinsCounter").textContent = balance_string;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
