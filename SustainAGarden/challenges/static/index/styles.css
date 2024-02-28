@@ -210,5 +210,5 @@ ul {
 }
 
 #bottomBar.open {
-    top: calc(100% - 350px); /* Move the bottom bar up by 60px when open */
+    top: calc(100% - 450px);
 }
