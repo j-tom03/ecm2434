@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.template import loader
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 
 from . import models
@@ -63,25 +63,32 @@ def index(request):
 def statistics(request):
     return render(request, "statistics.html")
 
-
-def setChallenge(request):
+def set_challenge(request):
     if request.method == "POST":
         form = SetChallengeForm(request.POST)
         if form.is_valid():
-            challenge = models.Challenge(title=form.cleaned_data["title"], transport=form.cleaned_data["transport"],
-                                         coins=form.cleaned_data["coins"], description=form.cleaned_data["description"],
+            challenge = models.Challenge(title=form.cleaned_data['title'], transport=form.cleaned_data["transport"],
+                                         coins=form.cleaned_data['coins'], description=form.cleaned_data['description'],
                                          challenge_setter=request.user)
-            challenge.save()
-            if form.cleaned_data["sub_type"] == "1":
-                return render(request, "index.html", generate_user_context(request.user))
-
-            else:
-                return render(request, "challenge_set.html", {"form": form, "message": "Challenge set successfully"})
-
+            try:
+                challenge.save()
+            except Exception as e:
+                print(f"An error occurred: {e}")
+            return render(request, "setChallenge.html", {"form": form})
+        else:
+            print("POST request")
+            print(form.errors)
     else:
+        print("GET request")
         form = SetChallengeForm()
 
-    return render(request, "challenge_set.html", {"form": form})
+    return render(request, "setChallenge.html", {"form": form})
+
+def all_challenges(request):
+    challenges = models.Challenge.objects.all()
+    for challenge in challenges:
+        print(challenge.title)
+    return render(request, "allChallenges.html", {"challenges": challenges})
 
 def generate_user_context(user):
     context = {"username": user.username}
