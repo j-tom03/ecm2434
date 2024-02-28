@@ -1,5 +1,5 @@
 var recent_tile;
-var balance;
+var balance = 0;
 
 function create_grid(width, height) {
     const plot = document.getElementById("plot-container");
@@ -143,3 +143,40 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+function checkAnswers() {
+    let rewards = 0;
+
+    // Check answers for challenge 1
+    let q1Answer = document.querySelector('input[name="ans-q1"]:checked');
+    if (q1Answer && q1Answer.value === '7') {
+        rewards += parseInt(document.querySelector('#challenge3 .reward').textContent);
+    }
+
+    // Check answers for challenge 2
+    let q2Answer = document.querySelector('input[name="ans-q2"]:checked');
+    if (q2Answer && q2Answer.value === '103000') {
+        rewards += parseInt(document.querySelector('#challenge3 .reward').textContent);
+    }
+
+    // Check answers for challenge 3
+    let blanks = document.querySelectorAll('#challenge3 input[name^="ans-b"]');
+    let blankAnswers = [];
+    blanks.forEach(blank => {
+        if (blank.checked) {
+            blankAnswers.push(blank.value);
+        }
+    });
+    if (blankAnswers.length === 5 &&
+        blankAnswers[0] === 'planglow' &&
+        blankAnswers[1] === 'polystyrene' &&
+        blankAnswers[2] === 'plant-based' &&
+        blankAnswers[3] === 'wood' &&
+        blankAnswers[4] === 'plantations') {
+        rewards += parseInt(document.querySelector('#challenge3 .reward').textContent);
+    }
+    
+    document.getElementById("bottomBar").style.display = "none";
+    update_balance(rewards, "add");
+    alert(rewards + " Coins won.");
+}
