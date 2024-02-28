@@ -37,7 +37,11 @@ class LoginForm(forms.Form):
 
 
 class SetChallengeForm(forms.Form):
-    challenge = forms.CharField(label='Challenge', max_length=200)
+    title = forms.CharField(label='Challenge', max_length=200)
+    transport = forms.BooleanField(label='Transport')
+    coins = forms.IntegerField(label='Coins')
+    description = forms.CharField(label='Description', widget=forms.Textarea)
+
 
 
 class CompleteChallengeForm(forms.Form):

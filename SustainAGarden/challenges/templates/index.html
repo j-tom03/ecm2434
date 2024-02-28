@@ -16,11 +16,11 @@
             </div>
             <button id="profileButton">Profile</button>
             <button id="shopButton">shop</button>
-            <div id="points">Points:</div>
+            <div id="points">Points: {{coins}}</div>
             <!-- Points from account -->
         </div>
         <div id="profileInfo" style="display: none">
-            <div class="profileHeader">User</div>
+            <div class="profileHeader">{{username}}</div>
             <!-- Username -->
             <div class="profileContent">
                 <div class="profileAvatar">
@@ -28,9 +28,9 @@
                     <!-- profile image from user -->
                 </div>
                 <div class="profileDetails">
-                    <div class="challengeCounter">Challenges Completed:</div>
+                    <div class="challengeCounter">Challenges Completed: {{challenges_completed}}</div>
                     <!-- challenge count from user -->
-                    <div class="pointsCounter">Points:</div>
+                    <div class="pointsCounter">Points: {{coins}}</div>
                     <!-- points from account -->
                 </div>
             </div>
@@ -86,7 +86,6 @@
             <div>{{ login_error }}</div>
             <input type="submit" value="Submit">
         </form>
-
         {% endif %}
     </body>
 </html>
