@@ -1,9 +1,7 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from django.template import loader
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
-
-from datetime import datetime
 
 from . import models
 from .forms import SetChallengeForm, UserForm, LoginForm, CompleteChallengeForm
@@ -19,70 +17,90 @@ def index(request):
         if request.POST["form_id"] == "login":
             form = LoginForm(request.POST)
             if form.is_valid():
-                user = authenticate(username=form.cleaned_data["username"], password=hashlib.sha256(form.cleaned_data["password"]))
+                user = authenticate(request, username=form.cleaned_data["username"], password=form.cleaned_data["password"])
+                if user is None:
+                    context["login_form"] = LoginForm()
+                    context["register_form"] = UserForm()
+                    context["complete_challenge_form"] = CompleteChallengeForm()
+                    context["login_error"] = "Incorrect username or password"
+                    return render(request, "index.html", context)
                 if user.institution:
                     return render(request, "statistics.html", generate_statistics_context())
+                login(request, user)
                 context = generate_user_context(user)
             else:
                 context["login_error"] = "Incorrect username or password"
 
-
         elif request.POST["form_id"] == "register":
             form = UserForm(request.POST)
             if form.is_valid():
-                context = generate_user_context(form.cleaned_data["username"])
-                populate_user_model(context)
+                form.save()
+                user = authenticate(request, username=form.cleaned_data["username"], password=form.cleaned_data["password1"])
+                login(request, user)
+                context = generate_user_context(user)
 
-        #will add validation
         elif request.POST["form_id"] == "complete_challenge":
             form = CompleteChallengeForm(request.POST)
-            if form.is_valid():
-                if request.POST["challenge_type"] == "image":
-                    context["date"] = datetime.today()
-                    context["user"] = request.POST["user_id"]
-                    context["challenge_id"] = request.POST["challenge_id"]
-                    context["image_proof"] = request.POST["image_proof"]
-                elif request.POST["challenge_type"] == "walk_or_cycle":
-                    context["date"] = datetime.today()
-                    context["user"] = request.POST["user_id"]
-                    context["challenge_id"] = request.POST["challenge_id"]
-                    context["start_point"] = request.POST["start_point"]
-                    context["end_point"] = request.POST["end_point"]
 
-
+        elif request.POST["form_id"] == "logout":
+            logout(request)
+            context["login_form"] = LoginForm()
+            context["register_form"] = UserForm()
+            context["complete_challenge_form"] = CompleteChallengeForm()
+            return render(request, "index.html", context)
 
     else:
+        if request.user.is_authenticated:
+            context = generate_user_context(request.user)
+
         context["login_form"] = LoginForm()
         context["register_form"] = UserForm()
         context["complete_challenge_form"] = CompleteChallengeForm()
 
-
     return render(request, "index.html", context)
+
 
 def statistics(request):
     return render(request, "statistics.html")
 
-def setChallenge(request):
+def set_challenge(request):
     if request.method == "POST":
         form = SetChallengeForm(request.POST)
         if form.is_valid():
-            return HttpResponse("thanks for the challenge!")
-
+            challenge = models.Challenge(title=form.cleaned_data['title'], transport=form.cleaned_data["transport"],
+                                         coins=form.cleaned_data['coins'], description=form.cleaned_data['description'],
+                                         challenge_setter=request.user)
+            try:
+                challenge.save()
+            except Exception as e:
+                print(f"An error occurred: {e}")
+            return render(request, "setChallenge.html", {"form": form})
+        else:
+            print("POST request")
+            print(form.errors)
     else:
+        print("GET request")
         form = SetChallengeForm()
 
-    return render(request, "name.html", {"form": form})
+    return render(request, "setChallenge.html", {"form": form})
+
+def all_challenges(request):
+    challenges = models.Challenge.objects.all()
+    for challenge in challenges:
+        print(challenge.title)
+    return render(request, "allChallenges.html", {"challenges": challenges})
 
 def generate_user_context(user):
     context = {"username": user.username}
-    context["challenges_completed"] = len(user.completed_challenges)
+    context["challenges_completed"] = len(user.completed_challenges.split(","))
     context["coins"] = user.coins
     context["garden"] = user.garden
     context["challenges"] = models.Challenge.objects.filter(challenge_setter=user)
     context["profile_image"] = user.profile_image
+    context["setter"] = user.setter
     return context
 
 def populate_user_model(data):
     user = models.User(username=data["username"], email=data["email"], profile_image=data["profile_image"],
-                       password=hashlib.sha256(["password"]))
+                       password=data["password"])
     user.save()
