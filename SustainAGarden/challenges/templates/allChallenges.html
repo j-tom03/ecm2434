@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Challenges</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Challenges</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Challenge Name</th>
+                <th>Description</th>
+                <th>Coins</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for challenge in challenges %}
+                <tr>
+                    <td>{{ challenge.title }}</td>
+                    <td>{{ challenge.description }}</td>
+                    <td>{{ challenge.coins }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button onclick="loadSetChallenge()" style="margin-top: 2%;">Add Challenge</button>
+</body>
+<script>
+    function loadSetChallenge() {
+        window.location.href = "/challenges/set-challenge/";
+    }
+</script>
+</html>
