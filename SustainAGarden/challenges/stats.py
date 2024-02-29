@@ -5,4 +5,3 @@ def generate_statistics_context() -> dict:
             "total_coins": 0,
             "most_challenges": 0,
             "graph": 0}
-

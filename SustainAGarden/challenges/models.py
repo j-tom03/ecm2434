@@ -57,7 +57,7 @@ class Challenge(models.Model):
         return self.title
 
 
-class completeChallenge(models.Model):
+class CompleteChallenge(models.Model):
     challenge_ID = models.ForeignKey(Challenge, on_delete=models.CASCADE)
     date = models.DateField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -8,15 +8,20 @@
 <body style="padding-left: 2%; padding-top: 2%">
     <h1>User Activity Statistics</h1>
     <div id="dataContainer">
-        <p id="challengesCompletedData">Challenges Completed: 0</p>
-        <p id="usersRegisteredData">Users Registered: 0</p>
-        <p id="co2Data">CO2 Saved: 0kg</p>
+        <p id="challengesCompletedData">Challenges Completed: {{ completed_challenges }}</p>
+        <p id="usersRegisteredData">Users Registered: {{ users.count }}</p>
+        <p id="co2Data">CO2 Saved: {{ co2 }}kg</p>
     </div>
-    <div>
+    <div style="padding-top: 2%;">
         <img src="../../static/statistics/chart.jpg" alt="Line Chart" id="lineChart" style="width:50%">
     </div>
     <div>
         <button style="margin-left: 80%;" id="refreshButton" onclick="refreshData()">Refresh</button>
     </div>
 </body>
+<script>
+    function refreshData() {
+        window.location.reload();
+    }
+</script>
 </html>

@@ -5,7 +5,11 @@
 }
 
 body {
-  background-color: #be3535;
+  background-color: rgb(238, 231, 203);
+}
+
+body p {
+  color: white;
 }
 
 .container {

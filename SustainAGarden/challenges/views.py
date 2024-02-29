@@ -61,7 +61,16 @@ def index(request):
 
 
 def statistics(request):
-    return render(request, "statistics.html")
+    challenges = 0
+    for user in models.User.objects.all():
+        challenges += len(user.completed_challenges.split(","))
+    context = {
+        "users": models.User.objects.all(),
+        "completed_challenges": challenges,
+        "co2": (challenges * models.User.objects.all().count()) + 100,
+
+    }
+    return render(request, "statistics.html", context=context)
 
 def set_challenge(request):
     if request.method == "POST":
