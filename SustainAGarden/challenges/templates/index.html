@@ -16,7 +16,7 @@
             </div>
             <button id="profileButton">Profile</button>
             {% if user.setter %}
-            <button id="add_challenge" action="/challangeset">
+            <button onclick="window.location.href = '/challenges/set-challenge'" value="Add Challenge">Add Challenge</button>
             {% endif %}
             <button id="shopButton">Shop</button>
             <div id="coins">Coins: {{coins}}</div> <!-- coins from account -->
