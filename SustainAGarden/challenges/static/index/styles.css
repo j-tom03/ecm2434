@@ -42,10 +42,6 @@ body {
     align-items: center;
 }
 
-#coins:hover {
-    background-color: #45a049;
-}
-
 #main-container {
     display: flex;
     justify-content: space-between;
