@@ -4,6 +4,7 @@
     <title>New Challenge</title>
 </head>
 <body>
+    {% if user.is_superuser %}
     <h1>New Challenge</h1>
     <form action="." method="POST">
         {% csrf_token %}
@@ -22,6 +23,9 @@
         <input type="submit" value="Submit">
     </form>
     <button onclick="loadAllChallenges()" style="margin-top: 2%;">See All Challenges</button>
+    {% else %}
+    <h1>Access Denied</h1>    
+    {% endif %}
 </body>
 <script>
     function loadAllChallenges() {

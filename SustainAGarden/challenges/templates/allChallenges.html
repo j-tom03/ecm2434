@@ -18,6 +18,7 @@
     </style>
 </head>
 <body>
+    {% if user.is_superuser %}
     <h1>All Challenges</h1>
     <table>
         <thead>
@@ -38,6 +39,9 @@
         </tbody>
     </table>
     <button onclick="loadSetChallenge()" style="margin-top: 2%;">Add Challenge</button>
+    {% else %}
+    <h1>Access Denied</h1>    
+    {% endif %}
 </body>
 <script>
     function loadSetChallenge() {
