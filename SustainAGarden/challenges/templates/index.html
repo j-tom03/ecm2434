@@ -158,7 +158,15 @@
     <script>
         function privacyNotice() {
             alert("By using this website, you agree to our privacy policy.");
+            document.cookie = "shown=1";
         }
-        privacyNotice();
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
+        }
+        if (getCookie("shown")!=1) {
+            privacyNotice();
+        }
     </script>
 </html>
