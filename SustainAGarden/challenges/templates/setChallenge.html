@@ -4,7 +4,7 @@
     <title>New Challenge</title>
 </head>
 <body>
-    {% if user.is_superuser %}
+    {% if user.setter %}
     <h1>New Challenge</h1>
     <form action="." method="POST">
         {% csrf_token %}
