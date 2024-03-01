@@ -74,25 +74,47 @@ function tileClickHandler(event) {
 
 function purchase(event) {
     event.stopPropagation();
-    // get item id
-    const type = event.target.id;
-
-    /*
-    Add code to remove amount from the user's currency.
-    */
 
     const tile = get_tile(recent_tile);
+    let cost = 0;
+
     if (event.target.id === "flower") {
-        tile.textContent = "F";
-        tile.style.backgroundColor = "pink";
+        cost = 20;
+        if (balance >= cost) {
+            tile.textContent = "F";
+            tile.style.backgroundColor = "pink";
+            update_balance(cost, "subtract");
+            toggleVisibility("shopInfo");
+        } else {
+            alert(
+                "Insufficient funds. You need at least 20 coins to purchase this item."
+            );
+        }
     } else if (event.target.id === "tree") {
-        tile.textContent = "T";
-        tile.style.backgroundColor = "green";
+        cost = 40;
+        if (balance >= cost) {
+            tile.textContent = "T";
+            tile.style.backgroundColor = "green";
+            update_balance(cost, "subtract");
+            toggleVisibility("shopInfo");
+        } else {
+            alert(
+                "Insufficient funds. You need at least 40 coins to purchase this item."
+            );
+        }
     } else if (event.target.id === "grass") {
-        tile.textContent = "G";
-        tile.style.backgroundColor = "lightgreen";
+        cost = 10;
+        if (balance >= cost) {
+            tile.textContent = "G";
+            tile.style.backgroundColor = "lightgreen";
+            update_balance(cost, "subtract");
+            toggleVisibility("shopInfo");
+        } else {
+            alert(
+                "Insufficient funds. You need at least 10 coins to purchase this item."
+            );
+        }
     }
-    toggleVisibility("shopInfo");
 }
 
 function get_tile(index) {

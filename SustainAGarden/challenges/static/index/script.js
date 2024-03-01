@@ -93,14 +93,17 @@ function purchase(event) {
         tile.textContent = "F";
         tile.style.backgroundColor = "pink";
         update_balance(20, "subtract");
+        toggleVisibility("shopInfo");
     } else if (event.target.id === "tree" && balance >= 40) {
         tile.textContent = "T";
         tile.style.backgroundColor = "green";
         update_balance(40, "subtract");
+        toggleVisibility("shopInfo");
     } else if (event.target.id === "grass" && balance >= 10) {
         tile.textContent = "G";
         tile.style.backgroundColor = "lightgreen";
         update_balance(10, "subtract");
+        toggleVisibility("shopInfo");
     }
     toggleVisibility("shopInfo");
 }
