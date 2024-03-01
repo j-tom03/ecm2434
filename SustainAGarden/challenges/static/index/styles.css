@@ -6,28 +6,22 @@ body {
 .nav {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    height: 75px;
 }
 
 #title img {
-    width: 300px;
-    height: 50px;
+    width: 400px;
+    height: 70px;
     display: block;
     border-radius: 10px;
 }
 
 #title {
-    width: 300px;
-    height: 50px;
+    width: 400px;
+    height: 70px;
 }
-/* Adjust font size 
-#coins {
-    background-color: #f0f0f0;
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 100px;
-    margin: 5px;
-}
-*/
+
 #coins {
     height: 40px;
     width: 90px;
@@ -51,7 +45,7 @@ body {
 
 #plot-wrapper {
     flex: 1;
-    padding-top: 30px;
+    padding-top: 10px;
 }
 
 #plot-container {
