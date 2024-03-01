@@ -18,7 +18,7 @@ function populate_t(tile_string) {
     const tiles = plot.childNodes;
     for (let i = 0; i < tile_string.length; i++) {
         if (tile_string[i] != "0") {
-            tiles[i].textContent = tile_string[i];
+            tiles[i].innerHTML = tile_string[i];
         }
     }
 }
@@ -74,7 +74,7 @@ function tileClickHandler(event) {
 }
 
 function load_balance() {
-    var coins_string = document.getElementById("coins").textContent;
+    var coins_string = document.getElementById("coins").innerHTML;
     balance = parseInt(coins_string.match(/\d+/)[0], 10);
     console.log("Current Balance: " + balance);
 }
@@ -90,17 +90,17 @@ function purchase(event) {
 
     const tile = get_tile(recent_tile);
     if (event.target.id === "flower" && balance >= 20) {
-        tile.textContent = "F";
+        tile.innerHTML = "F";
         tile.style.backgroundColor = "pink";
         update_balance(20, "subtract");
         toggleVisibility("shopInfo");
     } else if (event.target.id === "tree" && balance >= 40) {
-        tile.textContent = "T";
+        tile.innerHTML = "T";
         tile.style.backgroundColor = "green";
         update_balance(40, "subtract");
         toggleVisibility("shopInfo");
     } else if (event.target.id === "grass" && balance >= 10) {
-        tile.textContent = "G";
+        tile.innerHTML = "G";
         tile.style.backgroundColor = "lightgreen";
         update_balance(10, "subtract");
         toggleVisibility("shopInfo");
@@ -128,8 +128,8 @@ function update_balance(cost, operation) {
         balance -= cost;
     }
     var balance_string = "Coins: " + balance;
-    document.getElementById("coins").textContent = balance_string;
-    document.getElementById("coinsCounter").textContent = balance_string;
+    document.getElementById("coins").innerHTML = balance_string;
+    document.getElementById("coinsCounter").innerHTML = balance_string;
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -160,7 +160,7 @@ function checkAnswers() {
     let q1Answer = document.querySelector('input[name="ans-q1"]:checked');
     if (q1Answer && q1Answer.value === "7") {
         rewards += parseInt(
-            document.querySelector("#challenge3 .reward").textContent
+            document.querySelector("#challenge3 .reward").innerHTML
         );
     }
 
@@ -168,7 +168,7 @@ function checkAnswers() {
     let q2Answer = document.querySelector('input[name="ans-q2"]:checked');
     if (q2Answer && q2Answer.value === "103000") {
         rewards += parseInt(
-            document.querySelector("#challenge3 .reward").textContent
+            document.querySelector("#challenge3 .reward").innerHTML
         );
     }
 
@@ -189,7 +189,7 @@ function checkAnswers() {
         blankAnswers[4] === "plantations"
     ) {
         rewards += parseInt(
-            document.querySelector("#challenge3 .reward").textContent
+            document.querySelector("#challenge3 .reward").innerHTML
         );
     }
 
