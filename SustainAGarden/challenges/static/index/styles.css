@@ -1,6 +1,7 @@
 body {
     overflow: hidden;
     background-color: rgb(238, 231, 203);
+    font-family: "Roboto", sans-serif;
 }
 
 .nav {
@@ -26,7 +27,7 @@ body {
     height: 40px;
     width: 90px;
     margin: 5px;
-    background-color: #7172af;
+    background-color: #6c6ca8;
     color: white;
     border: solid 1px black;
     border-radius: 5px;
@@ -34,13 +35,34 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: "Roboto", sans-serif;
+}
+
+form[action="/challenges/"] {
+    display: inline-block;
+}
+
+input[type="submit"] {
+    background-color: #cf4545;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #d32f2f;
 }
 
 #main-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 10px;
+    padding-left: 10px;
 }
 
 #plot-wrapper {
@@ -55,20 +77,39 @@ body {
     align-items: center;
     width: auto;
 }
-ul {
-    padding: 15px;
-    padding-left: 20px;
-    margin: 0;
-}
+
 #challenges {
     border: 1px solid #999;
-    height: auto;
-    width: 155px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    background-color: #d4adcf;
+    height: 400px;
+    width: 200px;
+    padding: 10px;
     border-radius: 15px;
     margin: 0 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#challenges h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#challenges ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#challenges li {
+    margin-bottom: 8px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+#challenges li:hover {
+    background-color: #f5f5f5;
 }
 
 .tile {
@@ -112,16 +153,18 @@ ul {
     padding: 10px 20px;
     margin: 5px;
     font-size: 16px;
-    background-color: #4caf50;
+    background-color: #5b9279;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: "Roboto", sans-serif;
+    transition: background-color 0.3s;
 }
 
 #profileButton:hover,
 #shopButton:hover {
-    background-color: #45a049;
+    background-color: #436d5a;
 }
 
 .profileContent {
@@ -189,11 +232,12 @@ ul {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
-    background-color: #f0f0f0;
+    width: 70%;
+    background-color: #d4adcf;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border: 1px solid rgb(24, 22, 22);
+    border: 1px solid #999;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-bottom: none;
     padding: 10px;
     z-index: 9999;
@@ -229,7 +273,7 @@ ul {
 }
 
 #bottomBar.open {
-    top: calc(100% - 650px);
+    top: calc(100% - 550px);
 }
 
 #blank-answers {
@@ -252,4 +296,57 @@ ul {
 
 #blank-answers li {
     padding: 20px;
+}
+
+#bottomBarContent ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#bottomBarContent li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 10px;
+}
+
+.personal-challenges {
+    margin-bottom: 20px;
+}
+
+input[type="radio"] {
+    appearance: none; /* Remove default appearance */
+    width: 15px; /* Set width of the radio button */
+    height: 15px; /* Set height of the radio button */
+    border: 2px solid #5b9279; /* Add border */
+    border-radius: 50%; /* Make it round */
+    outline: none; /* Remove outline */
+    cursor: pointer; /* Add pointer cursor */
+    margin-right: 10px; /* Add spacing between radio button and label */
+}
+
+input[type="radio"]:checked {
+    background-color: #436d5a;
+    border: 2px solid #436d5a;
+}
+
+input[type="radio"] + span {
+    display: inline-flex; /* Use flexbox */
+    align-items: center; /* Center vertically */
+    font-size: 16px; /* Adjust label font size */
+}
+
+#check {
+    padding: 10px 20px; /* Add padding for better appearance */
+    background-color: #5b9279; /* Green background color */
+    color: white; /* White text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Cursor style on hover */
+    font-size: 16px; /* Font size */
+    margin: 20px;
+}
+
+#check:hover {
+    background-color: #436d5a;
 }
