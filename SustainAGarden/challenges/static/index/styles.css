@@ -2,6 +2,7 @@ body {
     overflow: hidden;
     background-color: rgb(238, 231, 203);
     font-family: "Roboto", sans-serif;
+    height: 100vh;
 }
 
 .nav {
@@ -349,4 +350,73 @@ input[type="radio"] + span {
 
 #check:hover {
     background-color: #436d5a;
+}
+
+#login_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#login_form {
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#register_form {
+    width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the form headings */
+#login_form h1,
+#register_form h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Style for form fields */
+#login_form input[type="text"],
+#login_form input[type="password"],
+#register_form input[type="text"],
+#register_form input[type="password"] {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+/* Style for submit buttons */
+#login_form input[type="submit"],
+#register_form input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Hover effect for submit buttons */
+#login_form input[type="submit"]:hover,
+#register_form input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Style for csrf_token input */
+input[name="csrfmiddlewaretoken"] {
+    display: none;
 }
