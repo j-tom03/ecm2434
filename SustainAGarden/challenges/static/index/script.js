@@ -87,24 +87,29 @@ function purchase(event) {
     Tree = 40
     Grass = 10
     */
+    var tree = document.createElement("img");
+    tree.src = "../static/index/trees.png";
+    var flower = document.createElement("img");
+    flower.src = "../static/index/flowers.png";
+    var grass = document.createElement("img");
+    grass.src = "../static/index/grass.png";
 
     const tile = get_tile(recent_tile);
     if (event.target.id === "flower" && balance >= 20) {
-        tile.innerHTML = "F";
-        tile.style.backgroundColor = "pink";
+        tile.appendChild(flower);
         update_balance(20, "subtract");
+        console.log("bought");
         toggleVisibility("shopInfo");
     } else if (event.target.id === "tree" && balance >= 40) {
-        tile.innerHTML = "T";
-        tile.style.backgroundColor = "green";
+        tile.appendChild(tree);
         update_balance(40, "subtract");
         toggleVisibility("shopInfo");
     } else if (event.target.id === "grass" && balance >= 10) {
-        tile.innerHTML = "G";
-        tile.style.backgroundColor = "lightgreen";
+        tile.appendChild(grass);
         update_balance(10, "subtract");
         toggleVisibility("shopInfo");
     }
+    console.log("denied");
     toggleVisibility("shopInfo");
 }
 

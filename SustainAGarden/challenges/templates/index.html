@@ -45,11 +45,11 @@
                     <!-- profile image from user -->
                 </div>
                 <div class="profileDetails">
-                    <div class="challengeCounter">
+                    <div id="challengeCounter">
                         Challenges Completed: {{challenges_completed}}
                     </div>
                     <!-- challenge count from user -->
-                    <div class="coinsCounter">Coins: {{coins}}</div>
+                    <div id="coinsCounter">Coins: {{coins}}</div>
                     <!-- coins from account -->
                 </div>
             </div>
@@ -57,9 +57,30 @@
         <div id="shopInfo" style="display: none">
             <div class="shopHeader">Shop</div>
             <div id="item-board">
-                <div class="item" id="flower">F</div>
-                <div class="item" id="tree">T</div>
-                <div class="item" id="grass">G</div>
+                <div class="item">
+                    <img
+                        src="../static/index/flowers.png"
+                        alt="flowers"
+                        id="flower"
+                    />
+                    <span>Flowers (20)</span>
+                </div>
+                <div class="item">
+                    <img
+                        src="../static/index/trees.png"
+                        alt="flowers"
+                        id="tree"
+                    />
+                    <span>Tree (40)</span>
+                </div>
+                <div class="item" id="grass">
+                    <img
+                        src="../static/index/grass.png"
+                        alt="flowers"
+                        id="grass"
+                    />
+                    <span>grass (10)</span>
+                </div>
             </div>
         </div>
         <div id="main-container">
