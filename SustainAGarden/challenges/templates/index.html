@@ -350,23 +350,33 @@
             create_grid(18, 9);
         </script>
         {% else %}
-        <div id="login_form">
-            <h1>Log in to your Account:</h1>
-            <form action="/challenges/" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="form_id" value="login" />
-                {{ login_form }}
-                <input type="submit" value="Submit" />
-            </form>
-        </div>
-        <div id="register_form">
-            <h1>Or Register:</h1>
-            <form action="/challenges/" method="post">
-                {% csrf_token %}
-                <input type="hidden" name="form_id" value="register" />
-                {{ register_form }}
-                <input type="submit" value="Submit" />
-            </form>
+        <div id="login_wrapper">
+            <div id="login_form" style="display: block">
+                <h1>Log in to your Account:</h1>
+                <form action="/challenges/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_id" value="login" />
+                    {{ login_form }}
+                    <input type="submit" value="Submit" />
+                    <p>
+                        Don't have an account?
+                        <button onclick="toggleForms()">Register</button>
+                    </p>
+                </form>
+            </div>
+            <div id="register_form" style="display: none">
+                <h1>Or Register:</h1>
+                <form action="/challenges/" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="form_id" value="register" />
+                    {{ register_form }}
+                    <input type="submit" value="Submit" />
+                    <p>
+                        Already have an account?
+                        <button onclick="toggleForms()">Login</button>
+                    </p>
+                </form>
+            </div>
         </div>
         {% endif %}
     </body>
