@@ -35,4 +35,11 @@ class SetChallengeForm(forms.Form):
 
 
 class CompleteChallengeForm(forms.Form):
-    pass
+    evidence = forms.ImageField(label="Input evidence here")
+
+
+class CompleteTransportForm(forms.Form):
+    start_point = forms.CharField(label="start point")
+    end_point = forms.CharField(label="end point")
+
+
