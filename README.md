@@ -8,8 +8,8 @@ I think there are requirements for all this stuff to be done properly, therefore
 - [Branching](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches) etc etc
 
 Current split of responsibilities:
-- Frontend: Ross, Tom
-- Backend: James, Matthew, Lewis
+- Frontend: Ross (rossbennfors), Tom (TMC330)
+- Backend: James (jtom03), Matthew (Asmodeus5503), Lewis
 - Documentation: Emily
 - Unassigned:
 
