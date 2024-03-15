@@ -59,7 +59,6 @@ class transport_challenge(models.Model):
     # these should be what three words locations
     start_point = models.CharField(max_length=200)
     end_point = models.CharField(max_length=200)
-    coins = models.IntegerField()
     challenge_setter = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
