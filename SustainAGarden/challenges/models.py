@@ -45,12 +45,21 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Challenge(models.Model):
     challenge_ID = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    transport = models.BooleanField(default=False)
     description = models.TextField(default="")
     coins = models.IntegerField()
-    # only used if the challenges is a transport challenge, use what three words?
-    start_point = models.CharField(default="000, 000, 000", max_length=200)
-    end_point = models.CharField(default="000, 000, 000", max_length=200)
+    challenge_setter = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+class transport_challenge(models.Model):
+    challenge_ID = models.AutoField(primary_key=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField(default="")
+    # these should be what three words locations
+    start_point = models.CharField(max_length=200)
+    end_point = models.CharField(max_length=200)
+    coins = models.IntegerField()
     challenge_setter = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -64,3 +73,13 @@ class CompleteChallenge(models.Model):
 
     def __str__(self):
         return self.challenge_ID.title + " " + self.user.username
+
+
+class FactMatchModel(models.Model):
+    # the entire text unedited
+    text = models.TextField(default="")
+    # the words in the text to be filled in represented by a string of nums with commas eg *1,4,6,11*
+    words = models.TextField(default="")
+    coins = models.IntegerField(default=30)
+    setter = models.ForeignKey(User, on_delete=models.CASCADE)
+

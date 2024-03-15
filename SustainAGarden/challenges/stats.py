@@ -1,3 +1,6 @@
+import plotly
+
+
 def generate_statistics_context() -> dict:
     # do some statistics processing
     return {"challenges_completed": 0,
