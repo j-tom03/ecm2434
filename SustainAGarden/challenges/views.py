@@ -12,15 +12,17 @@ from .transport import *
 # Create your views here.
 
 def index(request):
+    print(generate_fact_match_context())
     context = {}
     if request.method == "POST":
         if request.POST["form_id"] == "login":
             form = LoginForm(request.POST)
             if form.is_valid():
-                user = authenticate(request, username=form.cleaned_data["username"], password=form.cleaned_data["password"])
+                user = authenticate(request, username=form.cleaned_data["username"],
+                                    password=form.cleaned_data["password"])
                 if user is None:
                     context["login_error"] = "Incorrect username or password"
-                elif user.institution:
+                elif user.institution is True:
                     login(request, user)
                     return render(request, "statistics.html", generate_statistics_context())
                 else:
@@ -33,13 +35,17 @@ def index(request):
             form = UserForm(request.POST)
             if form.is_valid():
                 form.save()
-                user = authenticate(request, username=form.cleaned_data["username"], password=form.cleaned_data["password1"])
+                user = authenticate(request,
+                                    username=form.cleaned_data["username"],
+                                    password=form.cleaned_data["password1"])
                 login(request, user)
                 context = generate_user_context(user)
 
         elif request.POST["form_id"] == "complete_challenge":
             form = CompleteChallengeForm(request.POST)
             if form.is_valid():
+                models.Challenge(challenge_ID=request.POST["challenge_ID"],
+                                 user=request.user).save()
                 request.user.coins += models.Challenge.objects.get(challenge_ID=request.POST["challenge_ID"]).coins
                 request.user.completed_challenges += ","+request.POST["challenge_ID"]
                 request.user.save()
@@ -56,6 +62,13 @@ def index(request):
                     if isinstance(distance, tuple):
                         context["distance_error"] = f"An error occurred: {distance[1]}\nError code: {distance[0]}"
                     else:
+                        models.CompleteChallenge(challenge_ID=request.POST["challenge_ID"],
+                                                 user=request.user).save()
+                        tran_chall = models.transport_challenge.objects.get(challenge_ID=request.POST["challenge_ID"])
+                        tran_chall.distance_covered = distance
+                        tran_chall.start_point = form.cleaned_data["start_point"]
+                        tran_chall.end_point = form.cleaned_data["end_point"]
+                        tran_chall.save()
                         context["distance"] = distance
                         request.user.coins += round(distance*30)
                         request.user.completed_challenges += request.POST["challenge_ID"]
@@ -85,6 +98,11 @@ def statistics(request):
         "co2": (challenges * models.User.objects.all().count()) + 100,
 
     }
+
+    # new context for statistics page
+    """
+    context = generate_statistics_context()
+    """
     return render(request, "statistics.html", context=context)
 
 
