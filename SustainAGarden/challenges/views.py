@@ -155,7 +155,6 @@ def generate_fact_match_context():
     full = first.text
     split_full = full.split(" ")
     words = first.words.split(",")
-    words = [1, 6, 8, 15]
     word_list = []
     for word in words:
         word_list.append(split_full[int(word)])
