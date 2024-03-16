@@ -10,7 +10,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=200, primary_key=True, blank=False)
     email = models.EmailField(max_length=200, blank=False)
     profile_image = models.ImageField(upload_to='profile_images/', default='profile_images/default.jpg')
-    # these should be stored hashed not raw
     coins = models.IntegerField(default=0)
     completed_challenges = models.CharField(default="", max_length=10)
     setter = models.BooleanField(default=False)
@@ -19,6 +18,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(auto_now=True)
+    date_joined = models.DateTimeField(auto_now=True)
 
     objects = CustomUserManager()
 
@@ -52,14 +52,13 @@ class Challenge(models.Model):
     def __str__(self):
         return self.title
 
+
 class transport_challenge(models.Model):
     challenge_ID = models.AutoField(primary_key=True)
     title = models.CharField(max_length=200)
-    description = models.TextField(default="")
-    # these should be what three words locations
     start_point = models.CharField(max_length=200)
     end_point = models.CharField(max_length=200)
-    challenge_setter = models.ForeignKey(User, on_delete=models.CASCADE)
+    distance_covered = models.FloatField(default=0.00)
 
     def __str__(self):
         return self.title
