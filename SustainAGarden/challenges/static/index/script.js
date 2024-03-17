@@ -167,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+/*
 function checkAnswers() {
     let rewards = 0;
 
@@ -213,6 +214,12 @@ function checkAnswers() {
     bottomBarLocked = true;
     alert(rewards + " Coins won.");
     update_balance(rewards, "add");
+}
+*/
+
+function load_challenges() {
+    question_div = document.getElementById("question");
+    answers_div = document.getElementById("answers");
 }
 
 function toggleForms() {

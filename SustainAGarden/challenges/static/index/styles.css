@@ -114,8 +114,7 @@ input[type="submit"]:hover {
 }
 
 .tile {
-    background-color: #714e3b;
-    border: 1px solid #999999;
+    background-image: url("../static/index/dirt.png");
     height: 60px;
     width: 60px;
     text-align: center;
@@ -125,7 +124,7 @@ input[type="submit"]:hover {
 }
 
 .tile:hover {
-    filter: brightness(90%);
+    filter: brightness(150%);
 }
 
 .tile img {
