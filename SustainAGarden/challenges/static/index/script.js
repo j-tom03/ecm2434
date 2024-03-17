@@ -6,6 +6,10 @@ function create_grid(width, height) {
     for (let i = 0; i < width * height; i++) {
         const tile = document.createElement("div");
         tile.classList.add("tile");
+        //add dirt img
+        const dirtImg = document.createElement("img");
+        dirtImg.src = "../static/index/dirt.png";
+        tile.appendChild(dirtImg);
         // make clickable:
         tile.setAttribute("data-index", i); // store index.
         tile.addEventListener("click", tileClickHandler); // add click event.
@@ -88,7 +92,7 @@ function purchase(event) {
     Grass = 10
     */
     var tree = document.createElement("img");
-    tree.src = "../static/index/trees.png";
+    tree.src = "../static/index/tree.png";
     var flower = document.createElement("img");
     flower.src = "../static/index/flowers.png";
     var grass = document.createElement("img");
