@@ -86,11 +86,21 @@
         <div id="main-container">
             <div id="plot-wrapper"><div id="plot-container"></div></div>
             <div id="challenges">
-                <h3>Challenges</h3>
+                <h3>Save the Planet!</h3>
+                <h5>50 Credits Each</h5>
+                <p>Click to complete:</p>
                 <ul>
-                    <li>Walk 20 miles</li>
-                    <li>recycle 10 cans</li>
-                    <li>plant a tree</li>
+                    <li onclick="toggleVisibility('transport-entry')">Walk to the Forum</li>
+                    <div id="transport-entry" style="display: none">
+                        <form action="/challenges/" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="form_id" value="transport_challenge"/>
+                            {{ transport_challenge }}
+                            <input type="submit" value="Submit"/>
+                        </form>
+                    </div>
+                    <li>User Set</li>
+                    <li>User Set</li>
                 </ul>
             </div>
         </div>
@@ -102,7 +112,7 @@
                 <div id="game-board">
                     <div id="question">
                     </div>
-                    <div id="answers">
+                    <div id="answers">  
                     </div>
                     <script>load_challenges()</script>
                 </div>

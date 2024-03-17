@@ -88,9 +88,6 @@ input[type="submit"]:hover {
     border-radius: 15px;
     margin: 0 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#challenges h3 {
     text-align: center;
     margin-bottom: 10px;
 }
