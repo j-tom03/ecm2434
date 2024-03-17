@@ -11,7 +11,7 @@ function create_grid(width, height) {
         dirtImg.src = "../static/index/dirt.png";
         tile.appendChild(dirtImg);
         // make clickable:
-        tile.setAttribute("data-index", i); // store index.
+        dirtImg.setAttribute("data-index", i); // store index.
         tile.addEventListener("click", tileClickHandler); // add click event.
         plot.appendChild(tile);
     }
@@ -92,7 +92,7 @@ function purchase(event) {
     Grass = 10
     */
     var tree = document.createElement("img");
-    tree.src = "../static/index/tree.png";
+    tree.src = "../static/index/trees.png";
     var flower = document.createElement("img");
     flower.src = "../static/index/flowers.png";
     var grass = document.createElement("img");
@@ -100,15 +100,17 @@ function purchase(event) {
 
     const tile = get_tile(recent_tile);
     if (event.target.id === "flower" && balance >= 20) {
+        tile.innerHTML = "";
         tile.appendChild(flower);
         update_balance(20, "subtract");
-        console.log("bought");
         toggleVisibility("shopInfo");
     } else if (event.target.id === "tree" && balance >= 40) {
+        tile.innerHTML = "";
         tile.appendChild(tree);
         update_balance(40, "subtract");
         toggleVisibility("shopInfo");
     } else if (event.target.id === "grass" && balance >= 10) {
+        tile.innerHTML = "";
         tile.appendChild(grass);
         update_balance(10, "subtract");
         toggleVisibility("shopInfo");
@@ -141,23 +143,26 @@ function update_balance(cost, operation) {
     document.getElementById("coinsCounter").innerHTML = balance_string;
 }
 
+let bottomBarLocked = false;
 document.addEventListener("DOMContentLoaded", function () {
     var bottomBarButton = document.getElementById("bottomBarButton");
     var bottomBarContent = document.getElementById("bottomBarContent");
     var bottomBar = document.getElementById("bottomBar");
-0
-    bottomBarButton.addEventListener("click", function () {
-        if (bottomBarContent.style.display === "none") {
-            bottomBarContent.style.display = "block";
-            bottomBarButton.innerHTML =
-                '<img src="../static/index/down.png" alt="">';
 
-            bottomBar.classList.add("open");
-        } else {
-            bottomBarContent.style.display = "none";
-            bottomBarButton.innerHTML =
-                '<img src="../static/index/up.png" alt="">';
-            bottomBar.classList.remove("open");
+    bottomBarButton.addEventListener("click", function () {
+        if (!bottomBarLocked) {
+            if (bottomBarContent.style.display === "none") {
+                bottomBarContent.style.display = "block";
+                bottomBarButton.innerHTML =
+                    '<img src="../static/index/down.png" alt="">';
+
+                bottomBar.classList.add("open");
+            } else {
+                bottomBarContent.style.display = "none";
+                bottomBarButton.innerHTML =
+                    '<img src="../static/index/up.png" alt="">';
+                bottomBar.classList.remove("open");
+            }
         }
     });
 });
@@ -202,7 +207,10 @@ function checkAnswers() {
         );
     }
 
-    document.getElementById("bottomBar").style.display = "none";
+    document.getElementById("bottomBarContent").style.display = "none";
+    bottomBarButton.innerHTML = '<img src="../static/index/up.png" alt="">';
+    bottomBar.classList.remove("open");
+    bottomBarLocked = true;
     alert(rewards + " Coins won.");
     update_balance(rewards, "add");
 }
