@@ -131,6 +131,7 @@ input[type="submit"]:hover {
 .tile img {
     max-width: 60px;
     max-height: 60px;
+    z-index: -9999;
 }
 
 #profileInfo,
