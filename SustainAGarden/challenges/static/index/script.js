@@ -145,7 +145,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var bottomBarButton = document.getElementById("bottomBarButton");
     var bottomBarContent = document.getElementById("bottomBarContent");
     var bottomBar = document.getElementById("bottomBar");
-
+0
     bottomBarButton.addEventListener("click", function () {
         if (bottomBarContent.style.display === "none") {
             bottomBarContent.style.display = "block";

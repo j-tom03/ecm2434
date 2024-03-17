@@ -29,10 +29,16 @@ class LoginForm(forms.Form):
 
 class SetChallengeForm(forms.Form):
     title = forms.CharField(label='Challenge', max_length=200)
-    transport = forms.BooleanField(label='Transport', required=False)
     coins = forms.IntegerField(label='Coins')
     description = forms.CharField(label='Description', widget=forms.Textarea)
 
 
 class CompleteChallengeForm(forms.Form):
-    pass
+    evidence = forms.ImageField(label="Input evidence here")
+
+
+class CompleteTransportForm(forms.Form):
+    start_point = forms.CharField(label="start point")
+    end_point = forms.CharField(label="end point")
+
+
