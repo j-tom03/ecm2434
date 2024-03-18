@@ -129,6 +129,7 @@
                     {% csrf_token %}
                     <input type="hidden" name="form_id" value="login" />
                     {{ login_form }}
+                    {{ login_error }}
                     <input type="submit" value="Submit" />
                     <p>
                         Don't have an account?
@@ -141,7 +142,33 @@
                 <form action="/challenges/" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="form_id" value="register" />
-                    {{ register_form }}
+                    <label for="id_username">Username:</label>
+
+
+                    {{ register_form.username }}
+                    <br>
+                    <label for="email">Email:</label>
+                    {{ register_form.email }}
+                    <br>
+                    <label for="password1">Password:</label>
+                    {{ register_form.password1 }}
+                    <br>
+                    <label for="password2">Confirm Password:</label>
+                    {{ register_form.password2 }}
+                    <br>
+                    <label for="profile_image">Profile Image:</label>
+                    {{ register_form.profile_image }}
+                    <br>
+                    <label for="setter">Setter:</label>
+                    {{ register_form.setter }}
+                    <br>
+                    <label for="institution">Institution:</label>
+                    {{ register_form.institution }}
+                    <br>
+                    <label>I have read and accept SustainAGarden's <a href="{% url 'gdpr' %}">GDPR policy</a></label>
+                    {{ register_form.gdpr }}
+                    <br>
+                    {{gdpr_error}}
                     <input type="submit" value="Submit" />
                     <p>
                         Already have an account?
