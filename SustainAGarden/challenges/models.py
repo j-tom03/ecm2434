@@ -11,7 +11,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=200, blank=False)
     profile_image = models.ImageField(upload_to='profile_images/', default='profile_images/default.jpg')
     coins = models.IntegerField(default=0)
-    completed_challenges = models.CharField(default="", max_length=10)
+    completed_challenges = models.CharField(default="", max_length=2000)
     setter = models.BooleanField(default=False)
     institution = models.BooleanField(default=False)
     garden = models.CharField(max_length=160, default=f"{'0' * 160}")
