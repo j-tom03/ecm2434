@@ -30,13 +30,13 @@ body {
     margin: 5px;
     background-color: #6c6ca8;
     color: white;
-    border: solid 1px black;
     border-radius: 5px;
     font-size: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: "Roboto", sans-serif;
+    user-select: none;
 }
 
 form[action="/challenges/"] {
@@ -68,7 +68,7 @@ input[type="submit"]:hover {
 
 #plot-wrapper {
     flex: 1;
-    padding-top: 10px;
+    padding-top: 5%;
 }
 
 #plot-container {
@@ -88,9 +88,6 @@ input[type="submit"]:hover {
     border-radius: 15px;
     margin: 0 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#challenges h3 {
     text-align: center;
     margin-bottom: 10px;
 }
@@ -107,6 +104,7 @@ input[type="submit"]:hover {
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
+    user-select: none;
 }
 
 #challenges li:hover {
@@ -114,8 +112,7 @@ input[type="submit"]:hover {
 }
 
 .tile {
-    background-color: #714e3b;
-    border: 1px solid #999999;
+    background-image: url("../static/index/dirt.png");
     height: 60px;
     width: 60px;
     text-align: center;
@@ -125,7 +122,7 @@ input[type="submit"]:hover {
 }
 
 .tile:hover {
-    filter: brightness(90%);
+    filter: brightness(150%);
 }
 
 .tile img {
@@ -140,7 +137,7 @@ input[type="submit"]:hover {
     top: 50%;
     left: 50%;
     width: 350px;
-    height: 45%;
+    height: 20%;
     transform: translate(-50%, -50%);
     z-index: 9999;
     background-color: #ffffff;
@@ -442,4 +439,13 @@ input[type="radio"] + span {
 /* Style for csrf_token input */
 input[name="csrfmiddlewaretoken"] {
     display: none;
+}
+
+
+#transport-entry {
+    padding: 0px 10px;
+}
+
+#transport-entry input {
+    margin: 5px;
 }

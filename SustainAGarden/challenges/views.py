@@ -84,6 +84,7 @@ def index(request):
     context["login_form"] = LoginForm()
     context["register_form"] = UserForm()
     context["complete_challenge_form"] = CompleteChallengeForm()
+    context["transport_challenge"] = CompleteTransportForm()
 
     return render(request, "index.html", context)
 
