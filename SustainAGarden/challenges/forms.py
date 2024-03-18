@@ -11,6 +11,8 @@ class UserForm(UserCreationForm):
     setter = forms.BooleanField(label='Setter', required=False)
     institution = forms.BooleanField(label='Institution', required=False)
     password = forms.CharField(label='Password', max_length=200, widget=forms.PasswordInput)"""
+    gdpr = forms.BooleanField(label='GDPR', required=True,
+                              error_messages={'required': 'You must accept the GDPR policy to use this site'})
 
     class Meta:
         model = User
