@@ -12,7 +12,6 @@ from .transport import *
 # Create your views here.
 
 def index(request):
-    print(generate_fact_match_context())
     context = {}
     if request.method == "POST":
         if request.POST["form_id"] == "login":
@@ -38,6 +37,8 @@ def index(request):
                 user = authenticate(request,
                                     username=form.cleaned_data["username"],
                                     password=form.cleaned_data["password1"])
+                user.gdpr = form.cleaned_data["gdpr"]
+                user.save()
                 login(request, user)
                 context = generate_user_context(user)
 
@@ -85,6 +86,8 @@ def index(request):
     context["register_form"] = UserForm()
     context["complete_challenge_form"] = CompleteChallengeForm()
     context["transport_challenge"] = CompleteTransportForm()
+    context["fact"] = generate_fact_match_context()['fact']
+    context["word_list"] = generate_fact_match_context()['word_list']
 
     return render(request, "index.html", context)
 
@@ -136,6 +139,10 @@ def all_challenges(request):
     return render(request, "allChallenges.html", {"challenges": challenges})
 
 
+def gdpr(request):
+    return render(request, "gdpr.html", {})
+
+
 def generate_user_context(user):
     context = {"username": user.username, "challenges_completed": len(user.completed_challenges.split(",")),
                "coins": user.coins, "garden": user.garden,
@@ -148,6 +155,7 @@ def populate_user_model(data):
     user = models.User(username=data["username"], email=data["email"], profile_image=data["profile_image"],
                        password=data["password"])
     user.save()
+
 
 def generate_fact_match_context():
     fact_model = models.FactMatchModel.objects.all()
@@ -165,3 +173,5 @@ def generate_fact_match_context():
 
     context = {"fact": fact, "word_list": word_list}
     return context
+
+
