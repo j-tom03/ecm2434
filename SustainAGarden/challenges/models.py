@@ -19,10 +19,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     last_login = models.DateTimeField(auto_now=True)
     date_joined = models.DateTimeField(auto_now=True)
+    gdpr = models.BooleanField(default=False)
 
     objects = CustomUserManager()
 
-    REQUIRED_FIELDS = ["email"]
+    REQUIRED_FIELDS = ["email, gdpr"]
     USERNAME_FIELD = "username"
     is_anonymous = False
     is_authenticated = True
