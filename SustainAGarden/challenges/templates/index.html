@@ -92,6 +92,8 @@
                 <ul>
                     <li onclick="toggleVisibility('transport-entry')">Walk to the Forum</li>
                     <div id="transport-entry" style="display: none">
+                        30 Credits
+                        <br><br>
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
                             <input type="hidden" name="form_id" value="transport_challenge"/>
@@ -200,6 +202,7 @@
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(";").shift();
         }
+
         if (getCookie("shown") != 1) {
             privacyNotice();
         }

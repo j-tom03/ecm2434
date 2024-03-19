@@ -285,6 +285,11 @@ function check_answers() {
     else {
         alert("Congrats " + (reward/10) + " of your answers were correct. You won " + reward + " credits. See you tomorrow!");
     }
+
+    // set cookie as timer till next day
+    var expiration = new Date();
+    expiration.setDate(expiration.getDate()+1);
+    document.cookie="fmComplete=True; expires=" + expiration.toUTCString() + "; path=/";
 }
 
 function toggleForms() {
