@@ -1,5 +1,6 @@
 var recent_tile;
 var balance = 0;
+var current_answers;
 
 function create_grid(width, height) {
     const plot = document.getElementById("plot-container");
@@ -217,9 +218,73 @@ function checkAnswers() {
 }
 */
 
-function load_challenges() {
+function format_challenges() {
     question_div = document.getElementById("question");
-    answers_div = document.getElementById("answers");
+    answers_div = document.getElementById("answers-gen");
+    answers_list = answers_div.innerHTML;
+    answers_list = answers_list.replace(/'/g, '"');
+    const answers = JSON.parse(answers_list);
+    current_answers = answers;
+    // another list with the answers shuffled.
+    const shuffled = shuffle_list([...answers]);
+
+    answers_div.innerHTML = "";
+    
+    form = document.getElementById("fact-match");
+    for (let i = 0; i < shuffled.length; i++) {
+        var div = document.createElement("div");
+        var label = document.createElement("label");
+        label.textContent = shuffled[i];
+        label.id = "label-select" + (i+1);
+        var select = document.createElement("select");
+        select.name = "position";
+        select.id = "select" + (i+1);
+
+        for (let j = 1; j <= answers.length; j++) {
+            var option = document.createElement("option");
+            option.value = j;
+            option.textContent = j;
+            select.appendChild(option);
+        }
+        div.appendChild(label);
+        div.appendChild(select);
+        form.appendChild(div);
+    }
+    var submit = document.createElement("input");
+    submit.type = "submit"
+    submit.value = "Submit"
+    form.appendChild(submit);
+    toggleVisibility("answer-input");
+}
+
+function shuffle_list(list) {
+    for (let i = list.length - 1; i>0; i--) {
+        const j = Math.floor(Math.random() * (i+1));
+        [list[i], list[j]] = [list[j], list[i]];
+    }
+    return list;
+}
+
+function check_answers() {
+    var reward = 0;
+    for (let i = 0; i < current_answers.length; i++) {
+        var select_val = document.getElementById("select" + (i+1)).value;
+        var select_label = document.getElementById("label-select" + (i+1)).innerHTML;
+
+        if (select_label == current_answers[parseInt(select_val)-1]) {
+            reward += 10;
+        }
+    }
+    
+    if (reward/10 == current_answers.length) {
+        alert("Well Done! All your answers were correct. Reward: " + reward + " credits added to your balance.");
+    }
+    else if (reward == 0) {
+        alert("No answers were correct. Try again tomorrow!")
+    }
+    else {
+        alert("Congrats " + (reward/10) + " of your answers were correct. You won " + reward + " credits. See you tomorrow!");
+    }
 }
 
 function toggleForms() {

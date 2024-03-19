@@ -22,7 +22,7 @@
             {% if user.setter %}
             <button
                 onclick="window.location.href = '/challenges/set-challenge'"
-                value="Add Challenge"
+                value="Add Challenge" id="addChallengeButton"
             >
                 Add Challenge
             </button>
@@ -111,10 +111,21 @@
             <div id="bottomBarContent" style="display: none">
                 <div id="game-board">
                     <div id="question">
+                        {{fact}}
+                        <br>
+                        <div id="reward-info">[Each correct answer is worth 10 credits.]</div>
                     </div>
-                    <div id="answers">  
+                    <div id="answers-gen">
+                        {{word_list}}
                     </div>
-                    <script>load_challenges()</script>
+                    <div id="answer-input" style="display: none">
+                        Enter the position of each word:
+                        <form id="fact-match" onSubmit="check_answers()">
+
+                        </form>
+                    </div>
+                    <!-- e.g. ['2018', 'produced', 'This', 'to'] -->
+                    <script>format_challenges()</script>
                 </div>
             </div>
         </div>
