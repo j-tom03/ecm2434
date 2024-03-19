@@ -97,23 +97,44 @@ function purchase(event) {
     flower.src = "../static/index/images/flowers.png";
     var grass = document.createElement("img");
     grass.src = "../static/index/images/grass.png";
+    var palm = document.createElement("img");
+    palm.src = "../static/index/images/trees.png";
+    var snow = document.createElement("img");
+    snow.src = "../static/index/images/snow-bush.png";
+    var pink = document.createElement("img");
+    pink.src = "../static/index/images/pink-flower.png";
 
     const tile = get_tile(recent_tile);
     if (event.target.id === "flower" && balance >= 20) {
+        toggleVisibility("shopInfo");
         tile.innerHTML = "";
         tile.appendChild(flower);
         update_balance(20, "subtract");
-        toggleVisibility("shopInfo");
     } else if (event.target.id === "tree" && balance >= 40) {
+        toggleVisibility("shopInfo");
         tile.innerHTML = "";
         tile.appendChild(tree);
         update_balance(40, "subtract");
-        toggleVisibility("shopInfo");
     } else if (event.target.id === "grass" && balance >= 10) {
+        toggleVisibility("shopInfo");
         tile.innerHTML = "";
         tile.appendChild(grass);
         update_balance(10, "subtract");
+    } else if (event.target.id === "palm" && balance >= 50) {
         toggleVisibility("shopInfo");
+        tile.innerHTML = "";
+        tile.appendChild(palm);
+        update_balance(50, "subtract");
+    } else if (event.target.id === "snow" && balance >= 25) {
+        toggleVisibility("shopInfo");
+        tile.innerHTML = "";
+        tile.appendChild(snow);
+        update_balance(25, "subtract");
+    } else if (event.target.id === "pink" && balance >= 20) {
+        toggleVisibility("shopInfo");
+        tile.innerHTML = "";
+        tile.appendChild(pink);
+        update_balance(20, "subtract");
     }
     console.log("denied");
     toggleVisibility("shopInfo");
