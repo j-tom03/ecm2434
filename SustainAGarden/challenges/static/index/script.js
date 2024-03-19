@@ -26,7 +26,6 @@ function get_garden() {
     const plot = document.getElementById("plot-container");
     const tiles = plot.childNodes;
     let garden = "";
-    console.log(tiles.length);
     for (let i = 0; i < tiles.length; i++) {
         var image = tiles[i].childNodes[0].src;
         // split down to tile type, i.e.: dirt, flowers, etc.
