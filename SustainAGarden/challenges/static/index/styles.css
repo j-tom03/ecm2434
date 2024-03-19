@@ -353,7 +353,8 @@ input[type="radio"] + span {
     height: 100vh;
 }
 
-#login_form {
+#login_form,
+#addFact_form {
     width: 300px;
     margin: 0 auto;
     padding: 20px;
@@ -375,7 +376,8 @@ input[type="radio"] + span {
 
 /* Style for the form headings */
 #login_form h1,
-#register_form h1 {
+#register_form h1,
+#addFact_form h1 {
     margin-bottom: 20px;
     text-align: center;
 }
@@ -384,7 +386,9 @@ input[type="radio"] + span {
 #login_form input[type="text"],
 #login_form input[type="password"],
 #register_form input[type="text"],
-#register_form input[type="password"] {
+#register_form input[type="password"],
+#addFact_form input[type="text"],
+#addFact_form input[type="password"] {
     width: 80%;
     padding: 10px;
     margin-bottom: 15px;
@@ -394,7 +398,8 @@ input[type="radio"] + span {
 
 /* Style for submit buttons */
 #login_form input[type="submit"],
-#register_form input[type="submit"] {
+#register_form input[type="submit"],
+#addFact_form input[type="submit"] {
     width: 100%;
     padding: 10px;
     border: none;
@@ -406,7 +411,8 @@ input[type="radio"] + span {
 
 /* Hover effect for submit buttons */
 #login_form input[type="submit"]:hover,
-#register_form input[type="submit"]:hover {
+#register_form input[type="submit"]:hover,
+#addFact_form input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
