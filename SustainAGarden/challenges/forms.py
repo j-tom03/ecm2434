@@ -42,6 +42,7 @@ class AddFactForm(forms.Form):
     coins = forms.IntegerField(label='Coins')
 
 class CompleteChallengeForm(forms.Form):
+    challenge_ID = forms.IntegerField(label='Challenge ID', widget=forms.HiddenInput())
     evidence = forms.ImageField(label="Input evidence here")
 
 
