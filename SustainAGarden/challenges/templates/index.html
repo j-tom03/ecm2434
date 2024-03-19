@@ -22,7 +22,7 @@
             {% if user.setter %}
             <button
                 onclick="window.location.href = '/challenges/set-challenge'"
-                value="Add Challenge"
+                value="Add Challenge" id="addChallengeButton"
             >
                 Add Challenge
             </button>
@@ -118,6 +118,8 @@
                         Walk to the Forum
                     </li>
                     <div id="transport-entry" style="display: none">
+                        30 Credits
+                        <br><br>
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
                             <input
@@ -140,11 +142,22 @@
             </div>
             <div id="bottomBarContent" style="display: none">
                 <div id="game-board">
-                    <div id="question"></div>
-                    <div id="answers"></div>
-                    <script>
-                        load_challenges();
-                    </script>
+                    <div id="question">
+                        {{fact}}
+                        <br>
+                        <div id="reward-info">[Each correct answer is worth 10 credits.]</div>
+                    </div>
+                    <div id="answers-gen">
+                        {{word_list}}
+                    </div>
+                    <div id="answer-input" style="display: none">
+                        Enter the position of each word:
+                        <form id="fact-match" onSubmit="check_answers()">
+
+                        </form>
+                    </div>
+                    <!-- e.g. ['2018', 'produced', 'This', 'to'] -->
+                    <script>format_challenges()</script>
                 </div>
             </div>
         </div>
@@ -220,6 +233,7 @@
             const parts = value.split(`; ${name}=`);
             if (parts.length === 2) return parts.pop().split(";").shift();
         }
+
         if (getCookie("shown") != 1) {
             privacyNotice();
         }

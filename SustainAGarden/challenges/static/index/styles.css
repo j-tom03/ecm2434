@@ -10,6 +10,7 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 75px;
+    width: 100%;
 }
 
 #title img {
@@ -81,12 +82,13 @@ input[type="submit"]:hover {
 
 #challenges {
     border: 1px solid #999;
-    background-color: #d4adcf;
-    height: 400px;
+    background-color: rgb(250, 243, 213);
+    height: 540px;
     width: 200px;
     padding: 10px;
     border-radius: 15px;
-    margin: 0 30px;
+    border: none;
+    margin: 5% 30px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-bottom: 10px;
@@ -99,16 +101,18 @@ input[type="submit"]:hover {
 
 #challenges li {
     margin-bottom: 8px;
-    padding: 5px 10px;
+    padding: 10px;
+    margin: 10px 0px;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: rgb(48, 89, 89);
+    color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s ease;
     user-select: none;
 }
 
 #challenges li:hover {
-    background-color: #f5f5f5;
+    filter: brightness(150%);
 }
 
 .tile {
@@ -147,6 +151,10 @@ input[type="submit"]:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#profileInfo {
+    height: 30%;
 }
 
 .shopHeader {
@@ -188,12 +196,13 @@ input[type="submit"]:hover {
 }
 
 #profileButton,
-#shopButton {
+#shopButton, 
+#addChallengeButton {
     height: 40px;
     padding: 10px 20px;
     margin: 5px;
     font-size: 16px;
-    background-color: #5b9279;
+    background-color: rgb(48, 89, 89);
     color: white;
     border: none;
     border-radius: 5px;
@@ -252,18 +261,17 @@ input[type="submit"]:hover {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
-    background-color: #d4adcf;
+    width: 100%;
+    background-color: rgb(250, 243, 213);
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    border: 1px solid #999;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-bottom: none;
     padding: 10px;
     z-index: 9999;
     transition: top 0.5s ease, border-radius 0.5s ease;
     overflow: hidden;
-    top: calc(100% - 50px);
+    top: calc(100% - 60px);
 }
 
 #bottomBarButton {
@@ -274,6 +282,7 @@ input[type="submit"]:hover {
 #bottomBarButton img {
     height: 30px;
 }
+
 
 #bottomBarContent {
     text-align: center;
@@ -293,42 +302,9 @@ input[type="submit"]:hover {
 }
 
 #bottomBar.open {
-    top: calc(100% - 550px);
+    top: calc(100% - 600px);
 }
 
-#blank-answers {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    list-style-type: none;
-}
-
-#blank-answers li {
-    padding: 20px;
-}
-
-#blank-answers {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    list-style-type: none;
-}
-
-#blank-answers li {
-    padding: 20px;
-}
-
-#bottomBarContent ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#bottomBarContent li {
-    display: inline-block;
-    margin-right: 10px;
-    padding: 5px 10px;
-}
 
 .personal-challenges {
     margin-bottom: 20px;
@@ -446,4 +422,39 @@ input[name="csrfmiddlewaretoken"] {
 
 #transport-entry input {
     margin: 5px;
+}
+
+#game-board {
+    padding: 2%;
+    font-size: large;
+}
+
+#game-board #answer-input {
+    padding-top: 2%;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+#game-board #answer-input div {
+    color: white;
+    padding: 20px 0px;
+    margin: 20px;
+    background-color: rgb(48, 89, 89);
+    border-radius: 30px;
+    width: 95%;
+}
+
+#game-board label {
+    padding: 0 2%;
+}
+
+#game-board select {
+    border: none;
+    background-color: rgb(48, 89, 89);
+    color: white;
+}
+
+#reward-info {
+    color: grey;
+    font-size: small;
 }
