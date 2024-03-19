@@ -238,5 +238,11 @@
         if (getCookie("shown") != 1) {
             privacyNotice();
         }
+
+        if (getCookie("fmComplete") == "True") {
+            toggleVisibility("bottomBar");
+        }
+
+        get_garden();
     </script>
 </html>

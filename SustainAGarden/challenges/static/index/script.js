@@ -19,21 +19,45 @@ function create_grid(width, height) {
 }
 
 function populate_t(tile_string) {
-    const plot = document.getElementById("plot-container");
-    const tiles = plot.childNodes;
-    for (let i = 0; i < tile_string.length; i++) {
-        if (tile_string[i] != "0") {
-            tiles[i].innerHTML = tile_string[i];
-        }
-    }
+    // Needs redoing.
 }
 
 function get_garden() {
     const plot = document.getElementById("plot-container");
-    const tiles = plot.children;
+    const tiles = plot.childNodes;
     let garden = "";
-    // something else here to make it work Tom help me please
-    
+    console.log(tiles.length);
+    for (let i = 0; i < tiles.length; i++) {
+        var image = tiles[i].childNodes[0].src;
+        // split down to tile type, i.e.: dirt, flowers, etc.
+        var parts = image.split('/');
+        var file = parts[parts.length - 1];
+        var tile_type = file.split('.')[0];
+
+        switch(tile_type) {
+            case "flowers":
+                garden += "F";
+                break;
+            case "grass":
+                garden += "G";
+                break;
+            case "palm":
+                garden += "P";
+                break;
+            case "pink-flower":
+                garden += "p";
+                break;
+            case "trees":
+                garden += "T";
+                break;
+            case "snow-bush":
+                garden += "S";
+                break;
+            default:
+                garden += "D";
+        }
+    }
+    console.log(garden);
     return garden;
 }
 
@@ -157,7 +181,7 @@ function purchase(event) {
         tile.appendChild(pink);
         update_balance(20, "subtract");
     }
-    console.log("denied");
+    store_garden();
     toggleVisibility("shopInfo");
 }
 
@@ -226,56 +250,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
-
-/*
-function checkAnswers() {
-    let rewards = 0;
-
-    // Check answers for challenge 1
-    let q1Answer = document.querySelector('input[name="ans-q1"]:checked');
-    if (q1Answer && q1Answer.value === "7") {
-        rewards += parseInt(
-            document.querySelector("#challenge3 .reward").innerHTML
-        );
-    }
-
-    // Check answers for challenge 2
-    let q2Answer = document.querySelector('input[name="ans-q2"]:checked');
-    if (q2Answer && q2Answer.value === "103000") {
-        rewards += parseInt(
-            document.querySelector("#challenge3 .reward").innerHTML
-        );
-    }
-
-    // Check answers for challenge 3
-    let blanks = document.querySelectorAll('#challenge3 input[name^="ans-b"]');
-    let blankAnswers = [];
-    blanks.forEach((blank) => {
-        if (blank.checked) {
-            blankAnswers.push(blank.value);
-        }
-    });
-    if (
-        blankAnswers.length === 5 &&
-        blankAnswers[0] === "planglow" &&
-        blankAnswers[1] === "polystyrene" &&
-        blankAnswers[2] === "plant-based" &&
-        blankAnswers[3] === "wood" &&
-        blankAnswers[4] === "plantations"
-    ) {
-        rewards += parseInt(
-            document.querySelector("#challenge3 .reward").innerHTML
-        );
-    }
-
-    document.getElementById("bottomBarContent").style.display = "none";
-    bottomBarButton.innerHTML = '<img src="../static/index/images/up.png" alt="">';
-    bottomBar.classList.remove("open");
-    bottomBarLocked = true;
-    alert(rewards + " Coins won.");
-    update_balance(rewards, "add");
-}
-*/
 
 function format_challenges() {
     question_div = document.getElementById("question");
