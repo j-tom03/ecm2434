@@ -85,9 +85,9 @@ def index(request):
     context["login_form"] = LoginForm()
     context["register_form"] = UserForm()
     context["challenge1"] = models.Challenge.objects.get(challenge_ID=1)
-    context["challenge2"] = models.transport_challenge.objects.get(challenge_ID=2)
+    context["challenge2"] = models.Challenge.objects.get(challenge_ID=2)
     context["complete_challenge_form1"] = CompleteChallengeForm(initial={"challenge_ID": 1})
-    context["complete_challenge_form2"] = CompleteTransportForm(initial={"challenge_ID": 2})
+    context["complete_challenge_form2"] = CompleteChallengeForm(initial={"challenge_ID": 2})
     context["transport_challenge"] = CompleteTransportForm(initial={"challenge_ID": 1})
     context["fact"] = generate_fact_match_context()['fact']
     context["word_list"] = generate_fact_match_context()['word_list']
