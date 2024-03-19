@@ -18,8 +18,36 @@ function create_grid(width, height) {
     }
 }
 
-function populate_t(tile_string) {
-    // Needs redoing.
+function populate_t() {
+    var garden_string = document.getElementById("garden-string").innerHTML;
+    const tiles = document.getElementById("plot-container").childNodes;
+
+    for (let i = 0; i < tiles.length; i++) {
+        var garden_tile = garden_string.charAt(i);
+
+        switch (garden_tile) {
+            case "F":
+                tiles[i].childNodes[0].src = "../static/index/images/flowers.png";
+                break;
+            case "G":
+                tiles[i].childNodes[0].src = "../static/index/images/grass.png";
+                break;
+            case "P":
+                tiles[i].childNodes[0].src = "../static/index/images/palm.png";
+                break;
+            case "p":
+                tiles[i].childNodes[0].src = "../static/index/images/pink-flower.png";
+                break;
+            case "S":
+                tiles[i].childNodes[0].src = "../static/index/images/snow-bush.png";
+                break;
+            case "T":
+                tiles[i].childNodes[0].src = "../static/index/images/trees.png";
+                break;
+            default:
+                tiles[i].childNodes[0].src = "../static/index/images/dirt.png";
+        }
+    }
 }
 
 function get_garden() {
@@ -134,6 +162,7 @@ function purchase(event) {
     Tree = 40
     Grass = 10
     */
+   load_balance();
     var tree = document.createElement("img");
     tree.src = "../static/index/images/trees.png";
     var flower = document.createElement("img");
@@ -180,6 +209,7 @@ function purchase(event) {
         update_balance(20, "subtract");
     }
     store_garden();
+    load_balance();
     toggleVisibility("shopInfo");
 }
 
