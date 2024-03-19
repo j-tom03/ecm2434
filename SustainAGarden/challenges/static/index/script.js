@@ -128,6 +128,9 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("flower").addEventListener("click", purchase);
     document.getElementById("tree").addEventListener("click", purchase);
     document.getElementById("grass").addEventListener("click", purchase);
+    document.getElementById("palm").addEventListener("click", purchase);
+    document.getElementById("pink").addEventListener("click", purchase);
+    document.getElementById("snow").addEventListener("click", purchase);
 });
 
 function toggleVisibility(divId) {
@@ -170,7 +173,7 @@ function purchase(event) {
     var grass = document.createElement("img");
     grass.src = "../static/index/images/grass.png";
     var palm = document.createElement("img");
-    palm.src = "../static/index/images/trees.png";
+    palm.src = "../static/index/images/palm.png";
     var snow = document.createElement("img");
     snow.src = "../static/index/images/snow-bush.png";
     var pink = document.createElement("img");
