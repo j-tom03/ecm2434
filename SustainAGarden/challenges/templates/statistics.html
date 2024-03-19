@@ -3,6 +3,7 @@
 <head>
     <title>Internal Statistics</title>
     <link rel="stylesheet" href="../../static/statistics/style.css">
+    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js" charset="utf-8"></script>
     <script src="../../static/statistics/script.js"></script>
 </head>
 <body style="padding-left: 2%; padding-top: 2%">
@@ -12,8 +13,8 @@
         <p id="usersRegisteredData">Users Registered: {{ users.count }}</p>
         <p id="co2Data">CO2 Saved: {{ co2 }}kg</p>
     </div>
-    <div style="padding-top: 2%;">
-        <img src="../../static/statistics/chart.jpg" alt="Line Chart" id="lineChart" style="width:50%">
+    <div style="padding-top: 2%; width:600px;height:250px;" id="barGraph">
+        
     </div>
     <div>
         <button style="margin-left: 80%;" id="refreshButton" onclick="refreshData()">Refresh</button>
@@ -25,5 +26,13 @@
     function refreshData() {
         window.location.reload();
     }
+    
+    var data = [{
+        x: ['users', 'challenges', 'co2'],
+        y: [{{ users.count }}, {{ completed_challenges }}, {{ co2 }}],
+        type: 'bar'
+    }];
+
+    Plotly.newPlot("barGraph", data);
 </script>
 </html>
