@@ -82,3 +82,14 @@ class FactMatchModel(models.Model):
     coins = models.IntegerField(default=30)
     setter = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
+class CompleteTransportChallenge(models.Model):
+    challenge_ID = models.ForeignKey(transport_challenge, on_delete=models.CASCADE)
+    date = models.DateField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    distance = models.FloatField(default=0.00)
+
+    def __str__(self):
+        return self.challenge_ID.title + " " + self.user.username
+
+

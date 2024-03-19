@@ -198,6 +198,7 @@ input[type="submit"]:hover {
 #profileButton,
 #shopButton,
 #addChallengeButton,
+#statisticsButton,
 #addFactButton {
     height: 40px;
     padding: 10px 20px;

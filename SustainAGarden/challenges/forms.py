@@ -46,5 +46,6 @@ class CompleteChallengeForm(forms.Form):
 
 
 class CompleteTransportForm(forms.Form):
+    challenge_ID = forms.IntegerField(label="Challenge ID", widget=forms.HiddenInput())
     start_point = forms.CharField(label="Start Point")
     end_point = forms.CharField(label="End Point")
