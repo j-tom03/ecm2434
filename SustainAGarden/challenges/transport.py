@@ -11,13 +11,22 @@ def validate_format(data) -> bool:
 
 
 def get_distance(start, end) -> (float, int):
+    print("get distance")
     geocoder = what3words.Geocoder("UQK40B3T")
     start = geocoder.convert_to_coordinates(start)
     if "error" in start:
+        print(f"start: {start}")
         return start["error"]["code"], start["error"]["message"]
     end = geocoder.convert_to_coordinates(end)
     if "error" in end:
+        print(f"end: {end}")
         return end["error"]["code"], end["error"]["message"]
+
+    start = (start["coordinates"]["lng"], start["coordinates"]["lat"])
+    end = (end["coordinates"]["lng"], end["coordinates"]["lat"])
+
+    print(start)
+    print(end)
 
     return geodesic(start, end).km
 

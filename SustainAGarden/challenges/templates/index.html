@@ -34,6 +34,14 @@
                 Add Fact
             </button>
             {% endif %}
+            {% if user.institution %}
+            <button
+                onclick="window.location.href = '/challenges/view'"
+                value="Statistics" id="statisticsButton"
+            >
+                Statistics
+            </button>
+            {% endif %}
             <button id="shopButton">Shop</button>
             <div id="coins">Coins: {{ coins }}</div>
             <!-- coins from account -->
@@ -118,14 +126,14 @@
             <div id="plot-wrapper"><div id="plot-container"></div></div>
             <div id="challenges">
                 <h3>Save the Planet!</h3>
-                <h5>50 Credits Each</h5>
+                <h5>50 Coins Each</h5>
                 <p>Click to complete:</p>
                 <ul>
                     <li onclick="toggleVisibility('transport-entry')">
                         Walk to the Forum
                     </li>
                     <div id="transport-entry" style="display: none">
-                        30 Credits
+                        Get Coins for distance travelled!
                         <br><br>
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
@@ -135,6 +143,8 @@
                                 value="transport_challenge"
                             />
                             {{ transport_challenge }}
+                            {{ format_error }}
+                            {{ distance_error}}
                             <input type="submit" value="Submit" />
                         </form>
                     </div>
