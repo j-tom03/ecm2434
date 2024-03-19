@@ -10,6 +10,7 @@
         />
         <link rel="stylesheet" href="../static/index/styles.css" />
         <script src="../static/index/script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <title>SustainAGarden</title>
     </head>
     <body>
@@ -28,7 +29,7 @@
             </button>
             {% endif %}
             <button id="shopButton">Shop</button>
-            <div id="coins">Coins: {{coins}}</div>
+            <div id="coins">Coins: {{ coins }}</div>
             <!-- coins from account -->
             <form action="/challenges/" method="post">
                 {% csrf_token %}
