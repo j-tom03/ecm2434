@@ -140,7 +140,7 @@ input[type="submit"]:hover {
     top: 50%;
     left: 50%;
     width: 350px;
-    height: 20%;
+    height: auto;
     transform: translate(-50%, -50%);
     z-index: 9999;
     background-color: #ffffff;
@@ -196,7 +196,7 @@ input[type="submit"]:hover {
 }
 
 #profileButton,
-#shopButton, 
+#shopButton,
 #addChallengeButton,
 #addFactButton {
     height: 40px;
@@ -284,7 +284,6 @@ input[type="submit"]:hover {
     height: 30px;
 }
 
-
 #bottomBarContent {
     text-align: center;
     transition: opacity 0.5s ease;
@@ -305,7 +304,6 @@ input[type="submit"]:hover {
 #bottomBar.open {
     top: calc(100% - 600px);
 }
-
 
 .personal-challenges {
     margin-bottom: 20px;
