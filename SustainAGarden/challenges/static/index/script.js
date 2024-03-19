@@ -8,7 +8,7 @@ function create_grid(width, height) {
         tile.classList.add("tile");
         //add dirt img
         const dirtImg = document.createElement("img");
-        dirtImg.src = "../static/index/dirt.png";
+        dirtImg.src = "../static/index/images/dirt.png";
         tile.appendChild(dirtImg);
         // make clickable:
         dirtImg.setAttribute("data-index", i); // store index.
@@ -92,28 +92,49 @@ function purchase(event) {
     Grass = 10
     */
     var tree = document.createElement("img");
-    tree.src = "../static/index/trees.png";
+    tree.src = "../static/index/images/trees.png";
     var flower = document.createElement("img");
-    flower.src = "../static/index/flowers.png";
+    flower.src = "../static/index/images/flowers.png";
     var grass = document.createElement("img");
-    grass.src = "../static/index/grass.png";
+    grass.src = "../static/index/images/grass.png";
+    var palm = document.createElement("img");
+    palm.src = "../static/index/images/trees.png";
+    var snow = document.createElement("img");
+    snow.src = "../static/index/images/snow-bush.png";
+    var pink = document.createElement("img");
+    pink.src = "../static/index/images/pink-flower.png";
 
     const tile = get_tile(recent_tile);
     if (event.target.id === "flower" && balance >= 20) {
+        toggleVisibility("shopInfo");
         tile.innerHTML = "";
         tile.appendChild(flower);
         update_balance(20, "subtract");
-        toggleVisibility("shopInfo");
     } else if (event.target.id === "tree" && balance >= 40) {
+        toggleVisibility("shopInfo");
         tile.innerHTML = "";
         tile.appendChild(tree);
         update_balance(40, "subtract");
-        toggleVisibility("shopInfo");
     } else if (event.target.id === "grass" && balance >= 10) {
+        toggleVisibility("shopInfo");
         tile.innerHTML = "";
         tile.appendChild(grass);
         update_balance(10, "subtract");
+    } else if (event.target.id === "palm" && balance >= 50) {
         toggleVisibility("shopInfo");
+        tile.innerHTML = "";
+        tile.appendChild(palm);
+        update_balance(50, "subtract");
+    } else if (event.target.id === "snow" && balance >= 25) {
+        toggleVisibility("shopInfo");
+        tile.innerHTML = "";
+        tile.appendChild(snow);
+        update_balance(25, "subtract");
+    } else if (event.target.id === "pink" && balance >= 20) {
+        toggleVisibility("shopInfo");
+        tile.innerHTML = "";
+        tile.appendChild(pink);
+        update_balance(20, "subtract");
     }
     console.log("denied");
     toggleVisibility("shopInfo");
@@ -154,13 +175,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if (bottomBarContent.style.display === "none") {
                 bottomBarContent.style.display = "block";
                 bottomBarButton.innerHTML =
-                    '<img src="../static/index/down.png" alt="">';
+                    '<img src="../static/index/images/down.png" alt="">';
 
                 bottomBar.classList.add("open");
             } else {
                 bottomBarContent.style.display = "none";
                 bottomBarButton.innerHTML =
-                    '<img src="../static/index/up.png" alt="">';
+                    '<img src="../static/index/images/up.png" alt="">';
                 bottomBar.classList.remove("open");
             }
         }
@@ -209,7 +230,7 @@ function checkAnswers() {
     }
 
     document.getElementById("bottomBarContent").style.display = "none";
-    bottomBarButton.innerHTML = '<img src="../static/index/up.png" alt="">';
+    bottomBarButton.innerHTML = '<img src="../static/index/images/up.png" alt="">';
     bottomBar.classList.remove("open");
     bottomBarLocked = true;
     alert(rewards + " Coins won.");
