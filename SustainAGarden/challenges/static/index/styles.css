@@ -112,7 +112,6 @@ input[type="submit"]:hover {
 }
 
 .tile {
-    background-image: url("../static/index/dirt.png");
     height: 60px;
     width: 60px;
     text-align: center;
@@ -440,7 +439,6 @@ input[type="radio"] + span {
 input[name="csrfmiddlewaretoken"] {
     display: none;
 }
-
 
 #transport-entry {
     padding: 0px 10px;

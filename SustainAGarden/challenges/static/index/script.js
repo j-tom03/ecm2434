@@ -8,7 +8,7 @@ function create_grid(width, height) {
         tile.classList.add("tile");
         //add dirt img
         const dirtImg = document.createElement("img");
-        dirtImg.src = "../static/index/dirt.png";
+        dirtImg.src = "../static/index/images/dirt.png";
         tile.appendChild(dirtImg);
         // make clickable:
         dirtImg.setAttribute("data-index", i); // store index.
@@ -92,11 +92,11 @@ function purchase(event) {
     Grass = 10
     */
     var tree = document.createElement("img");
-    tree.src = "../static/index/trees.png";
+    tree.src = "../static/index/images/trees.png";
     var flower = document.createElement("img");
-    flower.src = "../static/index/flowers.png";
+    flower.src = "../static/index/images/flowers.png";
     var grass = document.createElement("img");
-    grass.src = "../static/index/grass.png";
+    grass.src = "../static/index/images/grass.png";
 
     const tile = get_tile(recent_tile);
     if (event.target.id === "flower" && balance >= 20) {
@@ -154,13 +154,13 @@ document.addEventListener("DOMContentLoaded", function () {
             if (bottomBarContent.style.display === "none") {
                 bottomBarContent.style.display = "block";
                 bottomBarButton.innerHTML =
-                    '<img src="../static/index/down.png" alt="">';
+                    '<img src="../static/index/images/down.png" alt="">';
 
                 bottomBar.classList.add("open");
             } else {
                 bottomBarContent.style.display = "none";
                 bottomBarButton.innerHTML =
-                    '<img src="../static/index/up.png" alt="">';
+                    '<img src="../static/index/images/up.png" alt="">';
                 bottomBar.classList.remove("open");
             }
         }
@@ -209,7 +209,7 @@ function checkAnswers() {
     }
 
     document.getElementById("bottomBarContent").style.display = "none";
-    bottomBarButton.innerHTML = '<img src="../static/index/up.png" alt="">';
+    bottomBarButton.innerHTML = '<img src="../static/index/images/up.png" alt="">';
     bottomBar.classList.remove("open");
     bottomBarLocked = true;
     alert(rewards + " Coins won.");

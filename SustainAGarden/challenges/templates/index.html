@@ -59,7 +59,7 @@
             <div id="item-board">
                 <div class="item">
                     <img
-                        src="../static/index/flowers.png"
+                        src="../static/index/images/flowers.png"
                         alt="flowers"
                         id="flower"
                     />
@@ -67,7 +67,7 @@
                 </div>
                 <div class="item">
                     <img
-                        src="../static/index/trees.png"
+                        src="../static/index/images/trees.png"
                         alt="flowers"
                         id="tree"
                     />
@@ -75,7 +75,7 @@
                 </div>
                 <div class="item" id="grass">
                     <img
-                        src="../static/index/grass.png"
+                        src="../static/index/images/grass.png"
                         alt="flowers"
                         id="grass"
                     />
@@ -90,13 +90,19 @@
                 <h5>50 Credits Each</h5>
                 <p>Click to complete:</p>
                 <ul>
-                    <li onclick="toggleVisibility('transport-entry')">Walk to the Forum</li>
+                    <li onclick="toggleVisibility('transport-entry')">
+                        Walk to the Forum
+                    </li>
                     <div id="transport-entry" style="display: none">
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
-                            <input type="hidden" name="form_id" value="transport_challenge"/>
+                            <input
+                                type="hidden"
+                                name="form_id"
+                                value="transport_challenge"
+                            />
                             {{ transport_challenge }}
-                            <input type="submit" value="Submit"/>
+                            <input type="submit" value="Submit" />
                         </form>
                     </div>
                     <li>User Set</li>
@@ -106,15 +112,15 @@
         </div>
         <div id="bottomBar">
             <div id="bottomBarButton">
-                <img src="../static/index/up.png" alt="" />
+                <img src="../static/index/images/up.png" alt="" />
             </div>
             <div id="bottomBarContent" style="display: none">
                 <div id="game-board">
-                    <div id="question">
-                    </div>
-                    <div id="answers">  
-                    </div>
-                    <script>load_challenges()</script>
+                    <div id="question"></div>
+                    <div id="answers"></div>
+                    <script>
+                        load_challenges();
+                    </script>
                 </div>
             </div>
         </div>
@@ -128,8 +134,7 @@
                 <form action="/challenges/" method="post">
                     {% csrf_token %}
                     <input type="hidden" name="form_id" value="login" />
-                    {{ login_form }}
-                    {{ login_error }}
+                    {{ login_form }} {{ login_error }}
                     <input type="submit" value="Submit" />
                     <p>
                         Don't have an account?
@@ -144,30 +149,32 @@
                     <input type="hidden" name="form_id" value="register" />
                     <label for="id_username">Username:</label>
 
-
                     {{ register_form.username }}
-                    <br>
+                    <br />
                     <label for="email">Email:</label>
                     {{ register_form.email }}
-                    <br>
+                    <br />
                     <label for="password1">Password:</label>
                     {{ register_form.password1 }}
-                    <br>
+                    <br />
                     <label for="password2">Confirm Password:</label>
                     {{ register_form.password2 }}
-                    <br>
+                    <br />
                     <label for="profile_image">Profile Image:</label>
                     {{ register_form.profile_image }}
-                    <br>
+                    <br />
                     <label for="setter">Setter:</label>
                     {{ register_form.setter }}
-                    <br>
+                    <br />
                     <label for="institution">Institution:</label>
                     {{ register_form.institution }}
-                    <br>
-                    <label>I have read and accept SustainAGarden's <a href="{% url 'gdpr' %}">GDPR policy</a></label>
+                    <br />
+                    <label
+                        >I have read and accept SustainAGarden's
+                        <a href="{% url 'gdpr' %}">GDPR policy</a></label
+                    >
                     {{ register_form.gdpr }}
-                    <br>
+                    <br />
                     {{gdpr_error}}
                     <input type="submit" value="Submit" />
                     <p>
