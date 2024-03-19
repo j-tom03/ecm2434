@@ -160,9 +160,27 @@ function update_balance(cost, operation) {
     } else {
         balance -= cost;
     }
+    post_balance(balance);
     var balance_string = "Coins: " + balance;
     document.getElementById("coins").innerHTML = balance_string;
     document.getElementById("coinsCounter").innerHTML = balance_string;
+}
+
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+}
+
+function post_balance(balance) {
+    $.post("update_coins/",
+    {
+      balance: balance,
+      csrfmiddlewaretoken: getCookie("csrftoken")
+    },
+    function(data,status){
+      console.log("Successfully updated balance");
+    });
 }
 
 let bottomBarLocked = false;

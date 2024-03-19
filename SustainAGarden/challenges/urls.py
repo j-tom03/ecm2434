@@ -6,6 +6,7 @@ urlpatterns = [
     path('set-challenge/', views.set_challenge, name='setChallenge'),
     path('all-challenges/', views.all_challenges, name='allChallenges'),
     path('gdpr/', views.gdpr, name='gdpr'),
+    path('update_coins/', views.update_coins, name='updateCoins'),
     re_path(r'.*\.jpg', views.profile_image, name='profileImage'),
     path('', views.index, name='index')
     ]

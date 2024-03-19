@@ -187,3 +187,10 @@ def complete_challenge(request, challenge_id):
     challenge = get_object_or_404(models.Challenge, pk=challenge_id)
 
     return render(request, "completeChallenge.html", {"challenge": challenge, "form": CompleteChallengeForm()})
+
+def update_coins(request):
+    user = request.user
+    user.coins = request.POST.get('balance')
+    user.save()
+    return HttpResponse("Coins updated")
+    
