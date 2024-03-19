@@ -23,7 +23,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
-    REQUIRED_FIELDS = ["email, gdpr"]
+    REQUIRED_FIELDS = ["email"]
     USERNAME_FIELD = "username"
     is_anonymous = False
     is_authenticated = True
