@@ -36,6 +36,10 @@ class SetChallengeForm(forms.Form):
     coins = forms.IntegerField(label='Coins')
     description = forms.CharField(label='Description', widget=forms.Textarea)
 
+class AddFactForm(forms.Form):
+    text = forms.CharField(label='Fact', max_length=500)
+    words = forms.CharField(label='Words e.g. 1,3,8,13', max_length=500)
+    coins = forms.IntegerField(label='Coins')
 
 class CompleteChallengeForm(forms.Form):
     evidence = forms.ImageField(label="Input evidence here")

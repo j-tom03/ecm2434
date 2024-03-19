@@ -4,7 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, Http404
 
 from . import models
-from .forms import SetChallengeForm, UserForm, LoginForm, CompleteChallengeForm, CompleteTransportForm
+from .forms import SetChallengeForm, UserForm, LoginForm, CompleteChallengeForm, CompleteTransportForm, AddFactForm
 from .stats import generate_statistics_context
 
 from .transport import *
@@ -130,6 +130,19 @@ def set_challenge(request):
         form = SetChallengeForm()
 
     return render(request, "setChallenge.html", {"form": form})
+
+
+def add_fact(request):
+    if request.method == "POST":
+        fact = models.FactMatchModel(text=request.POST["text"], words=request.POST["words"], coins=request.POST["coins"], setter=request.user)
+        fact.save()
+        return render(request, "addFact.html", {"form": {"text": request.POST["text"], "words": request.POST["words"]}})
+    else:
+        return render(request, "addFact.html", {"form": AddFactForm()})
+    
+def all_facts(request):
+    facts = models.FactMatchModel.objects.all()
+    return render(request, "allFacts.html", {"facts": facts})
 
 
 def all_challenges(request):

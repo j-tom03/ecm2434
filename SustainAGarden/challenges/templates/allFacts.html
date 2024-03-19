@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Facts</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    {% if user.setter %}
+    <h1>All Facts</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Fact</th>
+                <th>Coins</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fact in facts %}
+                <tr>
+                    <td>{{ fact.text }}</td>
+                    <td>{{ fact.coins }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button onclick="loadAddFact()" style="margin-top: 2%;">Add Fact</button>
+    <button onclick="window.location.href = '/challenges'" style="margin-top: 2%;">Home Page</button>
+
+    {% else %}
+    <h1>Access Denied</h1>    
+    {% endif %}
+</body>
+<script>
+    function loadAddFact() {
+        window.location.href = "/challenges/add-fact/";
+    }
+</script>
+</html>
