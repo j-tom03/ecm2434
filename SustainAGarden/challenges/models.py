@@ -9,7 +9,7 @@ from .managers import CustomUserManager
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length=200, primary_key=True, blank=False)
     email = models.EmailField(max_length=200, blank=False)
-    profile_image = models.ImageField(upload_to='profile_images/', default='profile_images/default.jpg')
+    image = models.CharField(max_length=200, default="dog")
     coins = models.IntegerField(default=0)
     completed_challenges = models.CharField(default="", max_length=10)
     setter = models.BooleanField(default=False)

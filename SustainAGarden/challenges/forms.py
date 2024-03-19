@@ -12,15 +12,17 @@ class UserForm(UserCreationForm):
     institution = forms.BooleanField(label='Institution', required=False)
     password = forms.CharField(label='Password', max_length=200, widget=forms.PasswordInput)"""
 
+    image = forms.ChoiceField(label='Profile Image', choices=[('dog', 'dog'), ('man', 'man'), ('shark', 'shark'), ('obamna', 'obama')])
+
     class Meta:
         model = User
-        fields = ['username', 'email', 'profile_image', 'setter', 'institution', 'password1', 'password2']
+        fields = ['username', 'email', 'image', 'setter', 'institution', 'password1', 'password2']
 
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'profile_image', 'setter', 'institution', 'password']
+        fields = ['username', 'email', 'image', 'setter', 'institution', 'password']
 
 class LoginForm(forms.Form):
     username = forms.CharField(label='Username', max_length=200)

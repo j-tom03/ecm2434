@@ -139,7 +139,7 @@ def generate_user_context(user):
     context = {"username": user.username, "challenges_completed": len(user.completed_challenges.split(",")),
                "coins": user.coins, "garden": user.garden,
                "challenges": models.Challenge.objects.filter(challenge_setter=user),
-               "profile_image": user.profile_image, "setter": user.setter}
+               "profile_image": "static/profile_images/"+user.image+".jpg", "setter": user.setter}
     return context
 
 
@@ -164,3 +164,16 @@ def generate_fact_match_context():
 
     context = {"fact": fact, "word_list": word_list}
     return context
+
+def profile_image(request):
+    user = request.user
+    if user.is_authenticated:
+        
+        return HttpResponse(open(f"challenges/static/profile_images/{user.image}.jpg", "rb").read(), content_type="image/jpg")
+    else:
+        raise Http404("User not found")
+
+def complete_challenge(request, challenge_id):
+    challenge = get_object_or_404(models.Challenge, pk=challenge_id)
+
+    return render(request, "completeChallenge.html", {"challenge": challenge, "form": CompleteChallengeForm()})
