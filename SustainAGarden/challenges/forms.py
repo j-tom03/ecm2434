@@ -44,5 +44,3 @@ class CompleteChallengeForm(forms.Form):
 class CompleteTransportForm(forms.Form):
     start_point = forms.CharField(label="Start Point")
     end_point = forms.CharField(label="End Point")
-
-
