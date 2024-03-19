@@ -57,7 +57,6 @@ function get_garden() {
                 garden += "D";
         }
     }
-    console.log(garden);
     return garden;
 }
 
