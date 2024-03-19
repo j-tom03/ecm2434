@@ -28,6 +28,26 @@ function populate_t(tile_string) {
     }
 }
 
+function get_garden() {
+    const plot = document.getElementById("plot-container");
+    const tiles = plot.children;
+    let garden = "";
+    // something else here to make it work Tom help me please
+    
+    return garden;
+}
+
+function store_garden() {
+    $.post("store_garden/",
+    {
+      garden: get_garden(),
+      csrfmiddlewaretoken: getCookie("csrftoken")
+    },
+    function(){
+      console.log("Successfully stored garden");
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     document
         .getElementById("profileButton")
