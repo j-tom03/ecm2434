@@ -321,6 +321,8 @@ function check_answers() {
     var expiration = new Date();
     expiration.setDate(expiration.getDate()+1);
     document.cookie="fmComplete=True; expires=" + expiration.toUTCString() + "; path=/";
+
+    update_balance(reward, "add");
 }
 
 function toggleForms() {
