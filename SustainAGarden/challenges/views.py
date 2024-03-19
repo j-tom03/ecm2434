@@ -193,4 +193,11 @@ def update_coins(request):
     user.coins = request.POST.get('balance')
     user.save()
     return HttpResponse("Coins updated")
+
+def store_garden(request):
+    user = request.user
+    user.garden = request.POST.get('garden')
+    user.save()
+    return HttpResponse("Garden updated")
+
     
