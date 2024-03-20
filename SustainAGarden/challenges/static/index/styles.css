@@ -458,3 +458,20 @@ input[name="csrfmiddlewaretoken"] {
     color: grey;
     font-size: small;
 }
+
+
+@media screen and (max-width: 767px) {
+    .tile {
+        height: 30px;
+        width: 30px;
+    }
+    
+    .tile img {
+        max-width: 30px;
+        max-height: 30px;
+    }
+
+    #main-container {
+        display: block;
+    }
+}
