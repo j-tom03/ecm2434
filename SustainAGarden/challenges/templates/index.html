@@ -149,8 +149,34 @@
                             <input type="submit" value="Submit" />
                         </form>
                     </div>
-                    <li>User Set</li>
-                    <li>User Set</li>
+                    <li onclick="toggleVisibility('challenge1-entry')">{{challenge1}}</li>
+                    <div id="challenge1-entry" style="display: none">
+                        <br><br>
+                        <form action="/challenges/" method="post">
+                            {% csrf_token %}
+                            <input
+                                type="hidden"
+                                name="form_id"
+                                value="complete_challenge_form1"
+                            />
+                            {{ complete_challenge_form1 }}
+                            <input type="submit" value="Submit" />
+                        </form>
+                    </div>
+                    <li onclick="toggleVisibility('challenge2-entry')">{{challenge2}}</li>
+                    <div id="challenge2-entry" style="display: none">
+                        <br><br>
+                        <form action="/challenges/" method="post">
+                            {% csrf_token %}
+                            <input
+                                type="hidden"
+                                name="form_id"
+                                value="complete_challenge_form2"
+                            />
+                            {{ complete_challenge_form2 }}
+                            <input type="submit" value="Submit" />
+                        </form>
+                    </div>
                 </ul>
             </div>
         </div>
