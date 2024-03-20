@@ -481,7 +481,7 @@ input[name="csrfmiddlewaretoken"] {
 @media screen and (max-height: 900px) {
     #plot-container {
         margin-top: 10%;
-        grid-template-columns: repeat(18, 50px);
+        grid-template-columns: repeat(18, 40px);
     }
 
     .tile {
