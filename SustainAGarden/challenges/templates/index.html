@@ -23,21 +23,23 @@
             {% if user.setter %}
             <button
                 onclick="window.location.href = '/challenges/set-challenge'"
-                value="Add Challenge" id="addChallengeButton"
+                value="Add Challenge"
+                id="addChallengeButton"
             >
                 Add Challenge
             </button>
             <button
                 onclick="window.location.href = '/challenges/add-fact'"
-                value="Add Fact" id="addFactButton"
+                value="Add Fact"
+                id="addFactButton"
             >
                 Add Fact
             </button>
-            {% endif %}
-            {% if user.institution %}
+            {% endif %} {% if user.institution %}
             <button
                 onclick="window.location.href = '/challenges/view'"
-                value="Statistics" id="statisticsButton"
+                value="Statistics"
+                id="statisticsButton"
             >
                 Statistics
             </button>
@@ -123,10 +125,10 @@
                 </div>
             </div>
         </div>
-        <div id="garden-string" style="display: none;">{{ garden }}</div>
+        <div id="garden-string" style="display: none">{{ garden }}</div>
         <div id="main-container">
             <div id="plot-wrapper">
-                <p style="margin-left:35%">Add plants to your Garden by clicking a tile!</p>
+                <p>Add plants to your Garden by clicking a tile!</p>
                 <div id="plot-container"></div>
             </div>
             <div id="challenges">
@@ -139,9 +141,9 @@
                     </li>
                     <div id="transport-entry" style="display: none">
                         Get Coins for distance travelled!
-                        <br><br>
+                        <br /><br />
                         Input the What3Words locations e.g. filled.count.soap
-                        <br><br>
+                        <br /><br />
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
                             <input
@@ -149,15 +151,16 @@
                                 name="form_id"
                                 value="transport_challenge"
                             />
-                            {{ transport_challenge }}
-                            {{ format_error }}
-                            {{ distance_error}}
+                            {{ transport_challenge }} {{ format_error }} {{
+                            distance_error}}
                             <input type="submit" value="Submit" />
                         </form>
                     </div>
-                    <li onclick="toggleVisibility('challenge1-entry')">{{challenge1}}</li>
+                    <li onclick="toggleVisibility('challenge1-entry')">
+                        {{challenge1}}
+                    </li>
                     <div id="challenge1-entry" style="display: none">
-                        <br><br>
+                        <br /><br />
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
                             <input
@@ -169,9 +172,11 @@
                             <input type="submit" value="Submit" />
                         </form>
                     </div>
-                    <li onclick="toggleVisibility('challenge2-entry')">{{challenge2}}</li>
+                    <li onclick="toggleVisibility('challenge2-entry')">
+                        {{challenge2}}
+                    </li>
                     <div id="challenge2-entry" style="display: none">
-                        <br><br>
+                        <br /><br />
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
                             <input
@@ -195,20 +200,20 @@
                 <div id="game-board">
                     <div id="question">
                         {{fact}}
-                        <br>
-                        <div id="reward-info">[Each correct answer is worth 10 coins.]</div>
+                        <br />
+                        <div id="reward-info">
+                            [Each correct answer is worth 10 coins.]
+                        </div>
                     </div>
-                    <div id="answers-gen">
-                        {{word_list}}
-                    </div>
+                    <div id="answers-gen">{{word_list}}</div>
                     <div id="answer-input" style="display: none">
                         Enter the position of each word:
-                        <form id="fact-match" onSubmit="check_answers()">
-
-                        </form>
+                        <form id="fact-match" onSubmit="check_answers()"></form>
                     </div>
                     <!-- e.g. ['2018', 'produced', 'This', 'to'] -->
-                    <script>format_challenges()</script>
+                    <script>
+                        format_challenges();
+                    </script>
                 </div>
             </div>
         </div>
