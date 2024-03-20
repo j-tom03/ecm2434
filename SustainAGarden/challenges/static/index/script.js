@@ -211,8 +211,8 @@ function purchase(event) {
         tile.appendChild(pink);
         update_balance(20, "subtract");
     }
+    post_balance(balance);
     store_garden();
-    load_balance();
     toggleVisibility("shopInfo");
 }
 
