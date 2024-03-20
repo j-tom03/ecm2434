@@ -461,6 +461,9 @@ input[name="csrfmiddlewaretoken"] {
 
 
 @media screen and (max-width: 767px) {
+    body {
+        overflow: scroll;
+    }
     .tile {
         height: 30px;
         width: 30px;
