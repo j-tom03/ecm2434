@@ -54,26 +54,26 @@ def index(request):
         elif request.POST["form_id"] == "transport_challenge":
             form = CompleteTransportForm(request.POST)
             if form.is_valid():
-                if not validate_format(form.cleaned_data["start_point"]) or not validate_format(form.cleaned_data["end_point"]):
-                    context["format_error"] = """Start point or end point do not fit the required format,
-                                                 Correct format: *word*.*word*.*word*"""
-
+                distance = get_distance(form.cleaned_data["start_point"], form.cleaned_data["end_point"])
+                if isinstance(distance, tuple):
+                    context["distance_error"] = f"An error occurred: {distance[1]}"
                 else:
-                    distance = get_distance(form.cleaned_data["start_point"], form.cleaned_data["end_point"])
-                    if isinstance(distance, tuple):
-                        context["distance_error"] = f"An error occurred: {distance[1]}\nError code: {distance[0]}"
-                    else:
-                        models.CompleteChallenge(challenge_ID=request.POST["challenge_ID"],
-                                                 user=request.user).save()
-                        tran_chall = models.transport_challenge.objects.get(challenge_ID=request.POST["challenge_ID"])
-                        tran_chall.distance_covered = distance
-                        tran_chall.start_point = form.cleaned_data["start_point"]
-                        tran_chall.end_point = form.cleaned_data["end_point"]
-                        tran_chall.save()
-                        context["distance"] = distance
-                        request.user.coins += round(distance*30)
-                        request.user.completed_challenges += request.POST["challenge_ID"]
-                        request.user.save()
+                    models.CompleteTransportChallenge(
+                        challenge_ID=models.transport_challenge.objects.get(challenge_ID=request.POST["challenge_ID"]),
+                        distance=distance,
+                        user=request.user).save()
+
+                    tran_chall = models.transport_challenge.objects.get(challenge_ID=request.POST["challenge_ID"])
+                    tran_chall.distance_covered = distance
+                    tran_chall.start_point = form.cleaned_data["start_point"]
+                    tran_chall.end_point = form.cleaned_data["end_point"]
+                    tran_chall.save()
+                    context["distance"] = distance
+                    request.user.coins += round(distance*30)
+                    request.user.completed_challenges += request.POST["challenge_ID"]
+                    request.user.save()
+
+                context = update_context(context, generate_user_context(request.user))
 
         elif request.POST["form_id"] == "logout":
             logout(request)
@@ -84,10 +84,15 @@ def index(request):
 
     context["login_form"] = LoginForm()
     context["register_form"] = UserForm()
-    context["complete_challenge_form"] = CompleteChallengeForm()
-    context["transport_challenge"] = CompleteTransportForm()
+    context["challenge1"] = models.Challenge.objects.get(challenge_ID=1)
+    context["challenge2"] = models.Challenge.objects.get(challenge_ID=2)
+    context["complete_challenge_form1"] = CompleteChallengeForm(initial={"challenge_ID": 1})
+    context["complete_challenge_form2"] = CompleteChallengeForm(initial={"challenge_ID": 2})
+    context["transport_challenge"] = CompleteTransportForm(initial={"challenge_ID": 1})
     context["fact"] = generate_fact_match_context()['fact']
     context["word_list"] = generate_fact_match_context()['word_list']
+
+    # print(context)
 
     return render(request, "index.html", context)
 
@@ -213,4 +218,8 @@ def store_garden(request):
     user.save()
     return HttpResponse("Garden updated")
 
+def update_context(context, vals):
+    for key in vals:
+        context[key] = vals[key]
+    return context
     

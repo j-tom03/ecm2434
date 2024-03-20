@@ -34,6 +34,14 @@
                 Add Fact
             </button>
             {% endif %}
+            {% if user.institution %}
+            <button
+                onclick="window.location.href = '/challenges/view'"
+                value="Statistics" id="statisticsButton"
+            >
+                Statistics
+            </button>
+            {% endif %}
             <button id="shopButton">Shop</button>
             <div id="coins">Coins: {{ coins }}</div>
             <!-- coins from account -->
@@ -63,6 +71,7 @@
         </div>
         <div id="shopInfo" style="display: none">
             <div class="shopHeader">Shop</div>
+            Coins: {{ coins }}
             <div id="item-board">
                 <div class="item">
                     <img
@@ -114,18 +123,24 @@
                 </div>
             </div>
         </div>
+        <div id="garden-string" style="display: none;">{{ garden }}</div>
         <div id="main-container">
-            <div id="plot-wrapper"><div id="plot-container"></div></div>
+            <div id="plot-wrapper">
+                <p style="margin-left:35%">Add plants to your Garden by clicking a tile!</p>
+                <div id="plot-container"></div>
+            </div>
             <div id="challenges">
                 <h3>Save the Planet!</h3>
-                <h5>50 Credits Each</h5>
+                <h5>50 Coins Each</h5>
                 <p>Click to complete:</p>
                 <ul>
                     <li onclick="toggleVisibility('transport-entry')">
                         Walk to the Forum
                     </li>
                     <div id="transport-entry" style="display: none">
-                        30 Credits
+                        Get Coins for distance travelled!
+                        <br><br>
+                        Input the What3Words locations e.g. filled.count.soap
                         <br><br>
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
@@ -135,16 +150,45 @@
                                 value="transport_challenge"
                             />
                             {{ transport_challenge }}
+                            {{ format_error }}
+                            {{ distance_error}}
                             <input type="submit" value="Submit" />
                         </form>
                     </div>
-                    <li>User Set</li>
-                    <li>User Set</li>
+                    <li onclick="toggleVisibility('challenge1-entry')">{{challenge1}}</li>
+                    <div id="challenge1-entry" style="display: none">
+                        <br><br>
+                        <form action="/challenges/" method="post">
+                            {% csrf_token %}
+                            <input
+                                type="hidden"
+                                name="form_id"
+                                value="complete_challenge_form1"
+                            />
+                            {{ complete_challenge_form1 }}
+                            <input type="submit" value="Submit" />
+                        </form>
+                    </div>
+                    <li onclick="toggleVisibility('challenge2-entry')">{{challenge2}}</li>
+                    <div id="challenge2-entry" style="display: none">
+                        <br><br>
+                        <form action="/challenges/" method="post">
+                            {% csrf_token %}
+                            <input
+                                type="hidden"
+                                name="form_id"
+                                value="complete_challenge_form2"
+                            />
+                            {{ complete_challenge_form2 }}
+                            <input type="submit" value="Submit" />
+                        </form>
+                    </div>
                 </ul>
             </div>
         </div>
         <div id="bottomBar">
             <div id="bottomBarButton">
+                <p>Click the here to view the Fact-Match Game!</p>
                 <img src="../static/index/images/up.png" alt="" />
             </div>
             <div id="bottomBarContent" style="display: none">
@@ -152,7 +196,7 @@
                     <div id="question">
                         {{fact}}
                         <br>
-                        <div id="reward-info">[Each correct answer is worth 10 credits.]</div>
+                        <div id="reward-info">[Each correct answer is worth 10 coins.]</div>
                     </div>
                     <div id="answers-gen">
                         {{word_list}}
@@ -250,5 +294,6 @@
         }
 
         get_garden();
+        populate_t();
     </script>
 </html>

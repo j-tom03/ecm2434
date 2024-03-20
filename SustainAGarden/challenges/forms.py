@@ -42,9 +42,11 @@ class AddFactForm(forms.Form):
     coins = forms.IntegerField(label='Coins')
 
 class CompleteChallengeForm(forms.Form):
+    challenge_ID = forms.IntegerField(label='Challenge ID', widget=forms.HiddenInput())
     evidence = forms.ImageField(label="Input evidence here")
 
 
 class CompleteTransportForm(forms.Form):
+    challenge_ID = forms.IntegerField(label="Challenge ID", widget=forms.HiddenInput())
     start_point = forms.CharField(label="Start Point")
     end_point = forms.CharField(label="End Point")
