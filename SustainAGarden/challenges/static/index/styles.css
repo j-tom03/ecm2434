@@ -226,6 +226,22 @@ input[type="submit"]:hover {
     background-color: #436d5a;
 }
 
+#closeShop {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+    position: absolute;
+    right: 15px;
+    top: 25px;
+    transform: translateY(-50%);
+}
+
+#closeShop:hover {
+    color: #555; /* Text color on hover */
+}
+
 .profileContent {
     display: flex;
     align-items: center;
