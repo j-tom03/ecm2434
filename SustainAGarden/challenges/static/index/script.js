@@ -239,6 +239,7 @@ function update_balance(cost, operation) {
     var balance_string = "Coins: " + balance;
     document.getElementById("coins").innerHTML = balance_string;
     document.getElementById("coinsCounter").innerHTML = balance_string;
+    document.getElementById("shopCoins").innerHTML = balance_string;
 }
 
 function getCookie(name) {

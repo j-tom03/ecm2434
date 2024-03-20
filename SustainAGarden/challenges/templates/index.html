@@ -79,7 +79,7 @@
             <div class="shopHeader">Shop
                 <button style="margin-left: 20%;" id="closeShop" onclick="toggleVisibility('shopInfo')">X</button>
             </div>
-            Coins: {{ coins }}
+            <div id="shopCoins">Coins: {{ coins }}</div>
             <div id="item-board">
                 <div class="item">
                     <img
@@ -303,7 +303,7 @@
         if (getCookie("fmComplete") == "True") {
             toggleVisibility("bottomBar");
         }
-
+        load_balance();
         get_garden();
         populate_t();
     </script>
