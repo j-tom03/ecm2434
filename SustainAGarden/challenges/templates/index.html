@@ -125,7 +125,10 @@
         </div>
         <div id="garden-string" style="display: none;">{{ garden }}</div>
         <div id="main-container">
-            <div id="plot-wrapper"><div id="plot-container"></div></div>
+            <div id="plot-wrapper">
+                <p style="margin-left:35%">Add plants to your Garden by clicking a tile!</p>
+                <div id="plot-container"></div>
+            </div>
             <div id="challenges">
                 <h3>Save the Planet!</h3>
                 <h5>50 Coins Each</h5>
@@ -136,6 +139,8 @@
                     </li>
                     <div id="transport-entry" style="display: none">
                         Get Coins for distance travelled!
+                        <br><br>
+                        Input the What3Words locations e.g. filled.count.soap
                         <br><br>
                         <form action="/challenges/" method="post">
                             {% csrf_token %}
@@ -183,6 +188,7 @@
         </div>
         <div id="bottomBar">
             <div id="bottomBarButton">
+                <p>Click the here to view the Fact-Match Game!</p>
                 <img src="../static/index/images/up.png" alt="" />
             </div>
             <div id="bottomBarContent" style="display: none">
@@ -190,7 +196,7 @@
                     <div id="question">
                         {{fact}}
                         <br>
-                        <div id="reward-info">[Each correct answer is worth 10 credits.]</div>
+                        <div id="reward-info">[Each correct answer is worth 10 coins.]</div>
                     </div>
                     <div id="answers-gen">
                         {{word_list}}
