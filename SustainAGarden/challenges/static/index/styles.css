@@ -485,6 +485,10 @@ input[name="csrfmiddlewaretoken"] {
         grid-template-columns: repeat(18, 40px);
     }
 
+    #challenges {
+        height: 460px;
+    }
+
     .tile {
         height: 40px;
         width: 40px;
