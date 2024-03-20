@@ -458,3 +458,49 @@ input[name="csrfmiddlewaretoken"] {
     color: grey;
     font-size: small;
 }
+
+
+@media screen and (max-width: 767px) {
+    body {
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
+
+    #title img {
+        width: 360px;
+        height: 63px;
+        border-radius: 10px;
+        padding-left: 2%;
+    }
+
+    #challenges {
+        width: 75%;
+    }
+    
+    .nav {
+        display: block;
+    }
+
+    .nav button, .nav #coins {
+        display: none;
+    }
+
+    #plot-container {
+        margin-top: 10%;
+        grid-template-columns: repeat(18, 20px);
+    }
+
+    .tile {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .tile img {
+        max-width: 20px;
+        max-height: 20px;
+    }
+
+    #main-container {
+        display: block;
+    }
+}
