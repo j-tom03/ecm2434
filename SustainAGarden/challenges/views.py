@@ -84,10 +84,10 @@ def index(request):
 
     context["login_form"] = LoginForm()
     context["register_form"] = UserForm()
-    context["challenge1"] = models.Challenge.objects.get(challenge_ID=1)
-    context["challenge2"] = models.Challenge.objects.get(challenge_ID=2)
-    context["complete_challenge_form1"] = CompleteChallengeForm(initial={"challenge_ID": 1})
-    context["complete_challenge_form2"] = CompleteChallengeForm(initial={"challenge_ID": 2})
+    context["challenge1"] = models.Challenge.objects.get(challenge_ID=4)
+    context["challenge2"] = models.Challenge.objects.get(challenge_ID=5)
+    context["complete_challenge_form1"] = CompleteChallengeForm(initial={"challenge_ID": 4})
+    context["complete_challenge_form2"] = CompleteChallengeForm(initial={"challenge_ID": 5})
     context["transport_challenge"] = CompleteTransportForm(initial={"challenge_ID": 1})
     context["fact"] = generate_fact_match_context()['fact']
     context["word_list"] = generate_fact_match_context()['word_list']
@@ -119,7 +119,7 @@ def set_challenge(request):
     if request.method == "POST":
         form = SetChallengeForm(request.POST)
         if form.is_valid():
-            challenge = models.Challenge(title=form.cleaned_data['title'], transport=form.cleaned_data["transport"],
+            challenge = models.Challenge(title=form.cleaned_data['title'],
                                          coins=form.cleaned_data['coins'], description=form.cleaned_data['description'],
                                          challenge_setter=request.user)
             try:
