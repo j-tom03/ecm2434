@@ -478,20 +478,20 @@ input[name="csrfmiddlewaretoken"] {
     font-size: small;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-height: 900px) {
     #plot-container {
         margin-top: 10%;
         grid-template-columns: repeat(18, 50px);
     }
 
     .tile {
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: 40px;
     }
 
     .tile img {
-        max-width: 50px;
-        max-height: 50px;
+        max-width: 40px;
+        max-height: 40px;
     }
 }
 
