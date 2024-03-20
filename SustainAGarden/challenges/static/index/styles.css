@@ -486,7 +486,7 @@ input[name="csrfmiddlewaretoken"] {
     }
 
     #challenges {
-        height: 420px;
+        height: 360px;
     }
 
     .tile {
