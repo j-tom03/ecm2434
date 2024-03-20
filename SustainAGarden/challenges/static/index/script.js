@@ -235,6 +235,7 @@ function update_balance(cost, operation) {
     } else {
         balance -= cost;
     }
+    document.cookie = "coinsUpdated=False;";
     post_balance(balance);
     var balance_string = "Coins: " + balance;
     document.getElementById("coins").innerHTML = balance_string;
@@ -248,6 +249,9 @@ function getCookie(name) {
 }
 
 function post_balance(balance) {
+    if (document.cookie.includes("coinsUpdated=True")) {
+        return;
+    }
     $.post("update_coins/",
     {
       balance: balance,
@@ -256,6 +260,7 @@ function post_balance(balance) {
     function(data,status){
       console.log("Successfully updated balance");
     });
+    document.cookie = "coinsUpdated=True;";
 }
 
 let bottomBarLocked = false;
