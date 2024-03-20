@@ -54,7 +54,11 @@
             </form>
         </div>
         <div id="profileInfo" style="display: none">
-            <div class="profileHeader">{{ username }}</div>
+            <div class="profileHeader">
+                {{ username }}
+                <button style="margin-left: 10%;" id="closeShop" onclick="toggleVisibility('profileInfo')">X</button>
+
+            </div>
             <!-- username -->
             <div class="profileContent">
                 <div class="profileAvatar">
@@ -72,7 +76,9 @@
             </div>
         </div>
         <div id="shopInfo" style="display: none">
-            <div class="shopHeader">Shop</div>
+            <div class="shopHeader">Shop
+                <button style="margin-left: 20%;" id="closeShop" onclick="toggleVisibility('shopInfo')">X</button>
+            </div>
             Coins: {{ coins }}
             <div id="item-board">
                 <div class="item">
