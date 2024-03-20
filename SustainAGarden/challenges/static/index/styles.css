@@ -464,6 +464,17 @@ input[name="csrfmiddlewaretoken"] {
     body {
         overflow: scroll;
     }
+
+    #title img {
+        width: 200px;
+        height: 35px;
+        border-radius: 10px;
+    }
+    
+    .nav {
+        display: block;
+    }
+
     .tile {
         height: 30px;
         width: 30px;
