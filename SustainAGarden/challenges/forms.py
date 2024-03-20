@@ -14,7 +14,7 @@ class UserForm(UserCreationForm):
     gdpr = forms.BooleanField(label='GDPR', required=True,
                               error_messages={'required': 'You must accept the GDPR policy to use this site'})
 
-    image = forms.ChoiceField(label='Profile Image', choices=[('dog', 'dog'), ('man', 'man'), ('shark', 'shark'), ('obamna', 'obama')])
+    image = forms.ChoiceField(label='Profile Image', choices=[('dog', 'dog'), ('kitten', 'kitten'), ('panda', 'panda'), ('rabbit', 'rabbit')])
 
     class Meta:
         model = User
